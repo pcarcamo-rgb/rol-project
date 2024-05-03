@@ -1,7 +1,6 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="./img/dice-d20-svgrepo-com (1).svg" width="200" alt="Nest Logo" />
 </p>
-
 
 # Dungeons and Dragons (D&D) Roleplaying Game API
 
