@@ -1,10 +1,13 @@
+import { Type } from 'class-transformer';
 import {
+  IsArray,
   IsNumber,
   IsOptional,
   IsString,
   Min,
   MinLength,
 } from 'class-validator';
+
 import { Background } from 'src/background/entities/background.entity';
 import { Race } from 'src/race/entities/race.entity';
 
@@ -49,4 +52,8 @@ export class CreateCharacterDto {
   @IsNumber()
   @Min(1)
   charisma: number;
+
+  @Type(() => Number)
+  @IsArray()
+  competencySkills: number[];
 }

@@ -30,7 +30,7 @@ export class CharacterController {
     return this.characterService.findOne(+id);
   }
 
-  @Get('getInfo/:id')
+  @Get('Info/:id')
   getInfo(@Param('id') id: string) {
     return this.characterService.getAllinfo(+id);
   }

@@ -9,33 +9,60 @@ import { UpdateCharacterDto } from './dto/character/update-character.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Character } from './entities/character.entity';
 import { Repository } from 'typeorm';
+import { CharacterAbilities } from './entities/character-abilities.entity';
+import { AbilitiesService } from 'src/abilities/abilities.service';
 
 @Injectable()
 export class CharacterService {
   constructor(
     @InjectRepository(Character)
     private readonly characterRepository: Repository<Character>,
+    @InjectRepository(CharacterAbilities)
+    private readonly charAbilities: Repository<CharacterAbilities>,
+
+    private readonly abilityService: AbilitiesService,
   ) {}
 
   async create(createCharacterDto: CreateCharacterDto) {
     try {
-      const character = this.characterRepository.create(createCharacterDto);
-      return await this.characterRepository.save(character);
+      const { competencySkills, ...characterToCreate } = createCharacterDto;
+      const character = this.characterRepository.create(characterToCreate);
+      await this.characterRepository.save(character);
+
+      const insertCharAbilities = [];
+
+      for (const abilityId of competencySkills) {
+        const searchAbility = await this.abilityService.findOne(abilityId);
+        if (searchAbility) {
+          const charAbility = new CharacterAbilities();
+          charAbility.character = character;
+          charAbility.ability = searchAbility;
+          insertCharAbilities.push(this.charAbilities.create(charAbility));
+        }
+      }
+
+      const abilities = await this.charAbilities.save(insertCharAbilities);
+
+      abilities.forEach((ability) => {
+        delete ability.character;
+      });
+
+      return { character, abilities };
     } catch (error) {
       this.handleExceptions(error);
     }
   }
 
   async getAllinfo(id: number) {
-    const character = await this.characterRepository.find({
-      relations: {
-        background: true,
-        race: true,
-      },
-      where: {
-        idCharacter: id,
-      },
-    });
+    const character = await this.characterRepository
+      .createQueryBuilder('character')
+      .leftJoinAndSelect('character.abilities', 'abilities')
+      .leftJoinAndSelect('abilities.ability', 'ability')
+      .leftJoinAndSelect('character.background', 'background')
+      .leftJoinAndSelect('character.race', 'race')
+      .where('character.idCharacter = :id', { id })
+      .getOne();
+
     if (!character)
       throw new NotFoundException(`Character with id ${id} not found.`);
 
@@ -68,8 +95,13 @@ export class CharacterService {
     return await this.characterRepository.save(character);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} character`;
+  async remove(id: number) {
+    try {
+      await this.characterRepository.delete(id);
+      return 'Deleted Success.';
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleExceptions(error: any): never {

@@ -5,8 +5,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { CharacterAbilities } from './character-abilities.entity';
 
 @Entity()
 export class Character {
@@ -58,4 +60,15 @@ export class Character {
     default: 10,
   })
   charisma: number;
+
+  @Column('int', {
+    default: 2,
+  })
+  proficiencyBonus: number;
+
+  @OneToMany(
+    () => CharacterAbilities,
+    (characterAbility) => characterAbility.character,
+  )
+  abilities: CharacterAbilities[];
 }

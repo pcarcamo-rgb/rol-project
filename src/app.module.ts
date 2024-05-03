@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CharacterModule } from './character/character.module';
 import { BackgroundModule } from './background/background.module';
 import { RaceModule } from './race/race.module';
+import { AbilitiesModule } from './abilities/abilities.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { RaceModule } from './race/race.module';
     CharacterModule,
     BackgroundModule,
     RaceModule,
+    AbilitiesModule,
+    SeedModule,
   ],
   controllers: [],
   providers: [],
