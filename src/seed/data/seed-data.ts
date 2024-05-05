@@ -26,6 +26,10 @@ interface Character {
   competencySkills: number[]; // Habilidades representadas por números del 1 al 10
 }
 
+export const tagsData = [{}];
+
+export const typeEquipmentData = [{}];
+
 export const abilitiesData: SeedAbility[] = [
   { abilityDesc: 'Acrobatics', caracteristic: 'dexterity' },
   { abilityDesc: 'Animal Handling', caracteristic: 'wisdom' },

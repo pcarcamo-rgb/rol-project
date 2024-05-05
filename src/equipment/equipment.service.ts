@@ -52,7 +52,13 @@ export class EquipmentService {
   }
 
   async findOne(id: number) {
-    const equipment = this.equipmentRepository.findBy({ IdEquipment: id });
+    const equipment = this.equipmentRepository.findOne({
+      where: { IdEquipment: id },
+      relations: {
+        tags: true,
+        typeEquipment: true,
+      },
+    });
     if (!equipment)
       throw new NotFoundException(`Equipment with id ${id} not found.`);
     return equipment;
@@ -61,7 +67,18 @@ export class EquipmentService {
   async update(id: number, updateEquipmentDto: UpdateEquipmentDto) {
     const equipmentToUpdate = await this.findOne(id);
 
-    Object.assign(equipmentToUpdate, updateEquipmentDto);
+    const { tags, ...equipment } = updateEquipmentDto;
+
+    if (tags) {
+      const defTags = await this.tagsRepository.findBy({
+        IdTagEquipment: In(tags),
+      });
+      Object.assign(equipmentToUpdate, { tags: defTags, ...equipment });
+    } else {
+      Object.assign(equipmentToUpdate, updateEquipmentDto);
+    }
+
+    console.log(equipmentToUpdate);
 
     return await this.equipmentRepository.save(equipmentToUpdate);
   }
