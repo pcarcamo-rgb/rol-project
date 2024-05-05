@@ -44,7 +44,8 @@ interface Character {
   proficiencyBonus: number;
   background: number;
   race: number;
-  competencySkills: number[]; // Habilidades representadas por números del 1 al 10
+  competencySkills: number[];
+  equipment: number[];
 }
 
 export const tagsData: SeedTags[] = [
@@ -182,6 +183,7 @@ export const charactersData: Character[] = [
     background: 1, // Soldier
     race: 1, // Human
     competencySkills: [1, 4, 7, 9],
+    equipment: [1],
   },
   {
     name: 'Lirelle',
@@ -196,6 +198,7 @@ export const charactersData: Character[] = [
     background: 2, // Noble
     race: 2, // Elf
     competencySkills: [3, 5, 8, 10],
+    equipment: [2, 1],
   },
   {
     name: 'Thorin',
@@ -210,5 +213,6 @@ export const charactersData: Character[] = [
     background: 3, // Soldier
     race: 3, // Dwarf
     competencySkills: [2, 6, 7, 9],
+    equipment: [1, 2, 3],
   },
 ];

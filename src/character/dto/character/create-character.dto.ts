@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 
 import { Background } from 'src/background/entities/background.entity';
+import { Equipment } from 'src/equipment/entities/equipment.entity';
 import { Race } from 'src/race/entities/race.entity';
 
 export class CreateCharacterDto {
@@ -56,4 +57,7 @@ export class CreateCharacterDto {
   @Type(() => Number)
   @IsArray()
   competencySkills: number[];
+
+  @IsArray()
+  equipment: Equipment[];
 }

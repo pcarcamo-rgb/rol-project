@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Character } from './entities/character.entity';
 import { CharacterAbilities } from './entities/character-abilities.entity';
 import { AbilitiesModule } from 'src/abilities/abilities.module';
+import { EquipmentModule } from 'src/equipment/equipment.module';
 
 @Module({
   controllers: [CharacterController],
@@ -12,6 +13,7 @@ import { AbilitiesModule } from 'src/abilities/abilities.module';
   imports: [
     TypeOrmModule.forFeature([Character, CharacterAbilities]),
     AbilitiesModule,
+    EquipmentModule,
   ],
   exports: [CharacterService],
 })

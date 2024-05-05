@@ -4,11 +4,14 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CharacterAbilities } from './character-abilities.entity';
+import { Equipment } from 'src/equipment/entities/equipment.entity';
 
 @Entity()
 export class Character {
@@ -71,4 +74,16 @@ export class Character {
     (characterAbility) => characterAbility.character,
   )
   abilities: CharacterAbilities[];
+
+  @ManyToMany(() => Equipment, (equipment) => equipment.character, {
+    cascade: true,
+    nullable: true,
+    onUpdate: 'CASCADE',
+  })
+  @JoinTable({
+    name: 'character_equipment',
+    joinColumn: { name: 'IdCharacter' },
+    inverseJoinColumn: { name: 'IdEquipment' },
+  })
+  equipment: Equipment[];
 }

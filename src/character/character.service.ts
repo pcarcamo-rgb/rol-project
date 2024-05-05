@@ -11,6 +11,8 @@ import { Character } from './entities/character.entity';
 import { Repository } from 'typeorm';
 import { CharacterAbilities } from './entities/character-abilities.entity';
 import { AbilitiesService } from 'src/abilities/abilities.service';
+import { EquipmentService } from 'src/equipment/equipment.service';
+import { Equipment } from 'src/equipment/entities/equipment.entity';
 
 @Injectable()
 export class CharacterService {
@@ -20,6 +22,7 @@ export class CharacterService {
     @InjectRepository(CharacterAbilities)
     private readonly charAbilities: Repository<CharacterAbilities>,
 
+    private readonly equipmentService: EquipmentService,
     private readonly abilityService: AbilitiesService,
   ) {}
 
@@ -90,9 +93,20 @@ export class CharacterService {
   async update(id: number, updateCharacterDto: UpdateCharacterDto) {
     const character = await this.findOne(id);
 
+    const { equipment } = updateCharacterDto;
+
+    const foundEquipment: Equipment[] = [];
+    for (const equip of equipment) {
+      foundEquipment.push(await this.equipmentService.findOne(+equip));
+    }
+    console.log(foundEquipment);
+
     Object.assign(character, updateCharacterDto);
 
-    return await this.characterRepository.save(character);
+    return await this.characterRepository.save({
+      ...character,
+      equipment: foundEquipment,
+    });
   }
 
   async remove(id: number) {

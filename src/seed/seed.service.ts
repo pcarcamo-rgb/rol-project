@@ -36,6 +36,7 @@ interface CreateCharacterDto {
   background: Background; // Cambia el tipo de background y race a sus respectivas entidades
   race: Race;
   competencySkills: number[];
+  equipment: Equipment[];
 }
 
 @Injectable()
@@ -58,10 +59,11 @@ export class SeedService {
       await this.insertBackgrounds();
       await this.insertRaces();
       await this.insertAbilities();
-      await this.insertCharacters();
       await this.insertTags();
       await this.insertTypeEquipment();
       await this.insertEquipment();
+
+      await this.insertCharacters();
       return 'Seed Executed.';
     } catch (error) {
       console.log(error);
@@ -131,6 +133,11 @@ export class SeedService {
       );
       const race = await this.raceService.findOne(character.race);
 
+      const equipmentFound: Equipment[] = [];
+      for (const equip of character.equipment) {
+        equipmentFound.push(await this.equipmentService.findOne(equip));
+      }
+
       const createCharacterDto: CreateCharacterDto = {
         name: character.name,
         level: character.level,
@@ -144,6 +151,7 @@ export class SeedService {
         background: background,
         race: race,
         competencySkills: character.competencySkills,
+        equipment: equipmentFound,
       };
 
       return this.characterService.create(createCharacterDto);

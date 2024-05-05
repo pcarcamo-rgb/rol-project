@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { TypeEquipment } from './equipment-type.entity';
 import { Tags } from 'src/tags/entities/tag.entity';
+import { Character } from 'src/character/entities/character.entity';
 
 @Entity()
 export class Equipment {
@@ -36,8 +37,15 @@ export class Equipment {
   typeEquipment: TypeEquipment;
 
   @ManyToMany(() => Tags, (tag) => tag.equipment)
-  @JoinTable()
+  @JoinTable({
+    name: 'equipment_tag',
+    joinColumn: { name: 'IdEquipment' },
+    inverseJoinColumn: { name: 'IdTag' },
+  })
   tags: Tags[];
+
+  @ManyToMany(() => Character, (character) => character.equipment)
+  character: Character[];
 
   @Column('text', {
     nullable: true,
