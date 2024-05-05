@@ -6,7 +6,10 @@ export class Ability {
   @PrimaryGeneratedColumn()
   idAbility: number;
 
-  @Column('text')
+  @Column('varchar', {
+    unique: true,
+    length: 200,
+  })
   abilityDesc: string;
 
   @Column('text')

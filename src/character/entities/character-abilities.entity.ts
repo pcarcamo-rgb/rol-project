@@ -9,6 +9,7 @@ export class CharacterAbilities {
 
   @ManyToOne(() => Character, (character) => character.abilities, {
     onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
   character: Character;
 

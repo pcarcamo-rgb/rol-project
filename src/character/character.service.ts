@@ -93,20 +93,33 @@ export class CharacterService {
   async update(id: number, updateCharacterDto: UpdateCharacterDto) {
     const character = await this.findOne(id);
 
-    const { equipment } = updateCharacterDto;
+    const { equipment, competencySkills } = updateCharacterDto;
 
-    const foundEquipment: Equipment[] = [];
-    for (const equip of equipment) {
-      foundEquipment.push(await this.equipmentService.findOne(+equip));
+    if (equipment) {
+      const foundEquipment: Equipment[] = [];
+      for (const equip of equipment) {
+        foundEquipment.push(await this.equipmentService.findOne(+equip));
+      }
+      Object.assign(character, updateCharacterDto);
+      character.equipment = foundEquipment;
     }
-    console.log(foundEquipment);
 
-    Object.assign(character, updateCharacterDto);
-
-    return await this.characterRepository.save({
-      ...character,
-      equipment: foundEquipment,
-    });
+    if (competencySkills) {
+      console.log(competencySkills);
+      const insertCharAbilities = [];
+      for (const abilityId of competencySkills) {
+        const searchAbility = await this.abilityService.findOne(abilityId);
+        if (searchAbility) {
+          const charAbility = new CharacterAbilities();
+          charAbility.character = character;
+          charAbility.ability = searchAbility;
+          insertCharAbilities.push(this.charAbilities.create(charAbility));
+        }
+        await this.charAbilities.delete({ character: character });
+        await this.charAbilities.save(insertCharAbilities);
+      }
+    }
+    return await this.characterRepository.save(character);
   }
 
   async remove(id: number) {

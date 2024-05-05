@@ -72,6 +72,11 @@ export class Character {
   @OneToMany(
     () => CharacterAbilities,
     (characterAbility) => characterAbility.character,
+    {
+      cascade: true,
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    },
   )
   abilities: CharacterAbilities[];
 
