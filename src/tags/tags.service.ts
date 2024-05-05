@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
@@ -50,6 +51,11 @@ export class TagsService {
       await this.tagRepository.delete(id);
       return 'Delete Success.';
     } catch (error) {
+      if (error.errno === 1451) {
+        throw new BadRequestException(
+          `Tag  with id ${id} cannot be deleted, is assigned to one or multiples equipments.`,
+        );
+      }
       throw new InternalServerErrorException(error);
     }
   }

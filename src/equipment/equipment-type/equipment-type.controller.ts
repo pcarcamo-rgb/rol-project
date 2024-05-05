@@ -39,7 +39,7 @@ export class EquipmentTypeController {
   }
 
   @Delete(':id')
-  deleteTypeEquipment(@Param() id: string) {
+  deleteTypeEquipment(@Param('id') id: string) {
     return this.typeEquipmentService.removeType(+id);
   }
 }

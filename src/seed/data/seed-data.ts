@@ -3,6 +3,27 @@ interface SeedAbility {
   caracteristic: string;
 }
 
+interface SeedTags {
+  descTagEquipment: string;
+}
+
+interface SeedEquipmentType {
+  descTypeEquipment: string;
+  isArmor?: boolean;
+  isWeapon?: boolean;
+}
+
+interface SeedEquipment {
+  nameEquipment: string;
+  descEquipment: string;
+  damageEquipment?: string;
+  armorEquipment?: number;
+  typeEquipment: number;
+  tags: number[];
+  typeOfDamage?: string;
+  price: number;
+}
+
 interface SeedBackground {
   backgroundName: string;
   background: string;
@@ -26,9 +47,79 @@ interface Character {
   competencySkills: number[]; // Habilidades representadas por números del 1 al 10
 }
 
-export const tagsData = [{}];
+export const tagsData: SeedTags[] = [
+  {
+    descTagEquipment: 'Two Hands',
+  },
+  {
+    descTagEquipment: 'One Hand',
+  },
+  {
+    descTagEquipment: 'Equipped',
+  },
+  {
+    descTagEquipment: 'Arcane Focus',
+  },
+  {
+    descTagEquipment: 'Special',
+  },
+];
 
-export const typeEquipmentData = [{}];
+export const typeEquipmentData: SeedEquipmentType[] = [
+  {
+    descTypeEquipment: 'Sword',
+    isWeapon: true,
+  },
+  {
+    descTypeEquipment: 'Spear',
+    isWeapon: true,
+  },
+  {
+    descTypeEquipment: 'Armor',
+    isArmor: true,
+  },
+  {
+    descTypeEquipment: 'Shield',
+    isArmor: true,
+  },
+];
+
+export const equipmentData: SeedEquipment[] = [
+  {
+    nameEquipment: 'Huchigatana',
+    descEquipment: 'Legendary Katana',
+    price: 20000,
+    tags: [1, 2, 3],
+    typeEquipment: 1,
+    typeOfDamage: 'Slash',
+    damageEquipment: '2d6',
+  },
+  {
+    nameEquipment: 'Shard Armor',
+    descEquipment: 'Legendary Armor',
+    price: 1000000,
+    tags: [3],
+    typeEquipment: 3,
+    armorEquipment: 18,
+  },
+  {
+    nameEquipment: 'Shard Sword',
+    descEquipment: 'Syl, sword of Kaladin Storm Blessed',
+    price: 10,
+    tags: [2],
+    typeEquipment: 1,
+    typeOfDamage: 'Piercing',
+    damageEquipment: '1d10',
+  },
+  {
+    nameEquipment: 'Shard Shield',
+    descEquipment: 'Shield that attempts to copy the qualities of Shard armor',
+    price: 3,
+    tags: [3, 2],
+    typeEquipment: 4,
+    armorEquipment: 3,
+  },
+];
 
 export const abilitiesData: SeedAbility[] = [
   { abilityDesc: 'Acrobatics', caracteristic: 'dexterity' },

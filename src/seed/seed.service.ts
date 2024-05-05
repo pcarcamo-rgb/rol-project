@@ -7,10 +7,21 @@ import {
   abilitiesData,
   backgroundData,
   charactersData,
+  equipmentData,
   racesData,
+  typeEquipmentData,
 } from './data/seed-data';
 import { Background } from 'src/background/entities/background.entity';
 import { Race } from 'src/race/entities/race.entity';
+import { TagsService } from 'src/tags/tags.service';
+import { TypeEquipmentService } from 'src/equipment/equipment-type/type-equipment.service';
+import { EquipmentService } from 'src/equipment/equipment.service';
+import { tagsData } from './data/seed-data';
+
+import { Tags } from 'src/tags/entities/tag.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Equipment } from 'src/equipment/entities/equipment.entity';
 
 interface CreateCharacterDto {
   name: string;
@@ -34,6 +45,12 @@ export class SeedService {
     private readonly raceService: RaceService,
     private readonly abilityService: AbilitiesService,
     private readonly characterService: CharacterService,
+    private readonly tagsService: TagsService,
+    private readonly typeEquipmentService: TypeEquipmentService,
+    private readonly equipmentService: EquipmentService,
+
+    @InjectRepository(Equipment)
+    private readonly equipmentRepository: Repository<Equipment>,
   ) {}
 
   async execute() {
@@ -42,12 +59,50 @@ export class SeedService {
       await this.insertRaces();
       await this.insertAbilities();
       await this.insertCharacters();
+      await this.insertTags();
+      await this.insertTypeEquipment();
+      await this.insertEquipment();
       return 'Seed Executed.';
     } catch (error) {
+      console.log(error);
       throw new InternalServerErrorException('Error in Seed, check logs');
     }
   }
 
+  private async insertTags() {
+    for (const tag of tagsData) {
+      await this.tagsService.create({ descTagEquipment: tag.descTagEquipment });
+    }
+  }
+
+  private async insertTypeEquipment() {
+    for (const typeEquipment of typeEquipmentData) {
+      await this.typeEquipmentService.createType(typeEquipment);
+    }
+  }
+
+  private async insertEquipment() {
+    const equipments = equipmentData;
+    const insertPromises = [];
+
+    for (const equipment of equipments) {
+      const foundTypeEquipment = await this.typeEquipmentService.findOneType(
+        equipment.typeEquipment,
+      );
+      const tagsFound: Tags[] = [];
+      for (const tag of equipment.tags) {
+        tagsFound.push(await this.tagsService.findOne(tag));
+      }
+      insertPromises.push(
+        this.equipmentRepository.create({
+          ...equipment,
+          typeEquipment: foundTypeEquipment,
+          tags: tagsFound,
+        }),
+      );
+    }
+    await this.equipmentRepository.save(insertPromises);
+  }
   private async insertBackgrounds() {
     for (const background of backgroundData) {
       await this.backgroundService.create({

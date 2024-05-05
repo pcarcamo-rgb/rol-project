@@ -1,4 +1,3 @@
-import { Type } from 'class-transformer';
 import {
   IsArray,
   IsNumber,
@@ -34,7 +33,8 @@ export class CreateEquipmentDto {
   tags: Tags[];
 
   @IsString()
-  typeOfDamage: string;
+  @IsOptional()
+  typeOfDamage?: string;
 
   @IsNumber()
   @Min(0)

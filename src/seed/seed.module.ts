@@ -5,10 +5,22 @@ import { BackgroundModule } from 'src/background/background.module';
 import { RaceModule } from 'src/race/race.module';
 import { AbilitiesModule } from 'src/abilities/abilities.module';
 import { CharacterModule } from 'src/character/character.module';
+import { TagsModule } from 'src/tags/tags.module';
+import { EquipmentModule } from 'src/equipment/equipment.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Equipment } from 'src/equipment/entities/equipment.entity';
 
 @Module({
   controllers: [SeedController],
   providers: [SeedService],
-  imports: [BackgroundModule, RaceModule, AbilitiesModule, CharacterModule],
+  imports: [
+    BackgroundModule,
+    RaceModule,
+    AbilitiesModule,
+    CharacterModule,
+    TagsModule,
+    EquipmentModule,
+    TypeOrmModule.forFeature([Equipment]),
+  ],
 })
 export class SeedModule {}

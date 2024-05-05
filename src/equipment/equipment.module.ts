@@ -16,5 +16,6 @@ import { Tags } from 'src/tags/entities/tag.entity';
     TypeOrmModule.forFeature([TypeEquipment, Equipment, Tags]),
     TagsModule,
   ],
+  exports: [EquipmentService, TypeEquipmentService],
 })
 export class EquipmentModule {}

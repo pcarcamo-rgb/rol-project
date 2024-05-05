@@ -39,7 +39,7 @@ export class EquipmentService {
 
       return await this.equipmentRepository.save(newEquipment);
     } catch (error) {
-      throw new InternalServerErrorException(error.message);
+      throw new InternalServerErrorException(error);
     }
   }
   async findAll() {
@@ -77,8 +77,6 @@ export class EquipmentService {
     } else {
       Object.assign(equipmentToUpdate, updateEquipmentDto);
     }
-
-    console.log(equipmentToUpdate);
 
     return await this.equipmentRepository.save(equipmentToUpdate);
   }

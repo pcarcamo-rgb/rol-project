@@ -35,7 +35,7 @@ export class Equipment {
   @JoinColumn({ name: 'idTypeEquipment' })
   typeEquipment: TypeEquipment;
 
-  @ManyToMany(() => Tags, (tag) => tag.equipment, { cascade: true })
+  @ManyToMany(() => Tags, (tag) => tag.equipment)
   @JoinTable()
   tags: Tags[];
 
