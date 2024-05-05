@@ -6,6 +6,8 @@ import { BackgroundModule } from './background/background.module';
 import { RaceModule } from './race/race.module';
 import { AbilitiesModule } from './abilities/abilities.module';
 import { SeedModule } from './seed/seed.module';
+import { EquipmentModule } from './equipment/equipment.module';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -19,12 +21,15 @@ import { SeedModule } from './seed/seed.module';
       database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
+      dropSchema: true,
     }),
     CharacterModule,
     BackgroundModule,
     RaceModule,
     AbilitiesModule,
     SeedModule,
+    EquipmentModule,
+    TagsModule,
   ],
   controllers: [],
   providers: [],

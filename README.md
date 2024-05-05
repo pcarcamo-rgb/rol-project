@@ -26,6 +26,11 @@ $ yarn install
 
 ```
 
+## Complete te enviroments variables
+
+Create a .env file with the .env.template variables, this is for the database conection.
+
+
 ## Running the app
 
 ```bash

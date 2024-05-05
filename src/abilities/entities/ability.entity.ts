@@ -9,6 +9,9 @@ export class Ability {
   @Column('text')
   abilityDesc: string;
 
+  @Column('text')
+  caracteristic: string;
+
   @OneToMany(
     () => CharacterAbilities,
     (characterAbility) => characterAbility.ability,

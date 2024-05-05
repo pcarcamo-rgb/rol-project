@@ -1,5 +1,6 @@
 interface SeedAbility {
   abilityDesc: string;
+  caracteristic: string;
 }
 
 interface SeedBackground {
@@ -26,24 +27,24 @@ interface Character {
 }
 
 export const abilitiesData: SeedAbility[] = [
-  { abilityDesc: 'Acrobatics' },
-  { abilityDesc: 'Animal Handling' },
-  { abilityDesc: 'Arcana' },
-  { abilityDesc: 'Athletics' },
-  { abilityDesc: 'Deception' },
-  { abilityDesc: 'History' },
-  { abilityDesc: 'Insight' },
-  { abilityDesc: 'Intimidation' },
-  { abilityDesc: 'Investigation' },
-  { abilityDesc: 'Medicine' },
-  { abilityDesc: 'Nature' },
-  { abilityDesc: 'Perception' },
-  { abilityDesc: 'Performance' },
-  { abilityDesc: 'Persuasion' },
-  { abilityDesc: 'Religion' },
-  { abilityDesc: 'Sleight of Hand' },
-  { abilityDesc: 'Stealth' },
-  { abilityDesc: 'Survival' },
+  { abilityDesc: 'Acrobatics', caracteristic: 'dexterity' },
+  { abilityDesc: 'Animal Handling', caracteristic: 'wisdom' },
+  { abilityDesc: 'Arcana', caracteristic: 'intelligence' },
+  { abilityDesc: 'Athletics', caracteristic: 'strength' },
+  { abilityDesc: 'Deception', caracteristic: 'charisma' },
+  { abilityDesc: 'History', caracteristic: 'intelligence' },
+  { abilityDesc: 'Insight', caracteristic: 'wisdom' },
+  { abilityDesc: 'Intimidation', caracteristic: 'charisma' },
+  { abilityDesc: 'Investigation', caracteristic: 'intelligence' },
+  { abilityDesc: 'Medicine', caracteristic: 'wisdom' },
+  { abilityDesc: 'Nature', caracteristic: 'intelligence' },
+  { abilityDesc: 'Perception', caracteristic: 'wisdom' },
+  { abilityDesc: 'Performance', caracteristic: 'charisma' },
+  { abilityDesc: 'Persuasion', caracteristic: 'charisma' },
+  { abilityDesc: 'Religion', caracteristic: 'intelligence' },
+  { abilityDesc: 'Sleight of Hand', caracteristic: 'dexterity' },
+  { abilityDesc: 'Stealth', caracteristic: 'dexterity' },
+  { abilityDesc: 'Survival', caracteristic: 'wisdom' },
 ];
 
 export const backgroundData: SeedBackground[] = [
