@@ -8,6 +8,9 @@ import { AbilitiesModule } from './abilities/abilities.module';
 import { SeedModule } from './seed/seed.module';
 import { EquipmentModule } from './equipment/equipment.module';
 import { TagsModule } from './tags/tags.module';
+import { ClassModule } from './class/class.module';
+import { TraitModule } from './trait/trait.module';
+import { ArchetypeModule } from './archetype/archetype.module';
 
 @Module({
   imports: [
@@ -30,6 +33,9 @@ import { TagsModule } from './tags/tags.module';
     SeedModule,
     EquipmentModule,
     TagsModule,
+    ClassModule,
+    TraitModule,
+    ArchetypeModule,
   ],
   controllers: [],
   providers: [],
