@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { TraitService } from './trait.service';
 import { CreateTraitDto } from './dto/create-trait.dto';
 import { UpdateTraitDto } from './dto/update-trait.dto';

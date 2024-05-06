@@ -16,13 +16,13 @@ export class Equipment {
   @PrimaryGeneratedColumn()
   IdEquipment: number;
 
-  @Column('text')
+  @Column('varchar', { unique: true })
   nameEquipment: string;
 
-  @Column('text')
+  @Column('varchar')
   descEquipment: string;
 
-  @Column('text', {
+  @Column('varchar', {
     nullable: true,
   })
   damageEquipment: string;
@@ -47,7 +47,7 @@ export class Equipment {
   @ManyToMany(() => Character, (character) => character.equipment)
   character: Character[];
 
-  @Column('text', {
+  @Column('varchar', {
     nullable: true,
   })
   typeOfDamage: string;

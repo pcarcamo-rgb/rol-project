@@ -6,10 +6,10 @@ export class Background {
   @PrimaryGeneratedColumn()
   IdBackground: number;
 
-  @Column('text')
+  @Column('varchar', { unique: true })
   backgroundName: string;
 
-  @Column('text')
+  @Column('varchar')
   background: string;
 
   @OneToMany(() => Character, (character) => character.background)

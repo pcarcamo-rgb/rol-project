@@ -14,7 +14,10 @@ export class Archetype {
   @PrimaryGeneratedColumn()
   IdArchetype: number;
 
-  @Column('text')
+  @Column('varchar', { unique: true })
+  nameArchetype: string;
+
+  @Column('varchar')
   descArchetype: string;
 
   @ManyToOne(() => Class, (clas) => clas.IdClass)

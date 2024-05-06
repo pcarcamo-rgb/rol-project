@@ -12,7 +12,10 @@ export class Trait {
   @PrimaryGeneratedColumn()
   IdTrait: number;
 
-  @Column('text')
+  @Column('varchar', { unique: true })
+  nameTrait: string;
+
+  @Column('varchar')
   descTrait: string;
 
   @Column('int')

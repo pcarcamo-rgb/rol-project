@@ -6,7 +6,7 @@ export class Race {
   @PrimaryGeneratedColumn()
   idRace: number;
 
-  @Column('text')
+  @Column('varchar', { unique: true })
   race: string;
 
   @OneToMany(() => Character, (character) => character.race)

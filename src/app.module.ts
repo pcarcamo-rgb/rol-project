@@ -24,7 +24,6 @@ import { ArchetypeModule } from './archetype/archetype.module';
       database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
-      dropSchema: true,
     }),
     CharacterModule,
     BackgroundModule,

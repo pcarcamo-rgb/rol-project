@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "41cbeed0-bf4b-495f-a1cf-2e4c02a5eac4",
+		"_postman_id": "d9f4148e-daff-4ea7-a87a-28ebef611642",
 		"name": "Rol",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33950595"
+		"_exporter_id": "23109571"
 	},
 	"item": [
 		{
@@ -24,14 +24,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/background/2",
-							"protocol": "http",
+							"raw": "{{baseurl}}/background/2",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"background",
 								"2"
 							]
@@ -54,14 +51,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/background",
-							"protocol": "http",
+							"raw": "{{baseurl}}/background",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"background"
 							]
 						}
@@ -74,14 +68,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/background",
-							"protocol": "http",
+							"raw": "{{baseurl}}/background",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"background"
 							]
 						}
@@ -94,14 +85,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/background/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/background/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"background",
 								"1"
 							]
@@ -115,14 +103,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/background/2",
-							"protocol": "http",
+							"raw": "{{baseurl}}/background/2",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"background",
 								"2"
 							]
@@ -130,7 +115,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "## Endpoints Backgrounds\n\n### Crear una habilidad\n\n- **MÉTODO:** `POST`\n- **Descripción:** Crea una nueva habilidad.\n- **URL:** `/abilities`\n- **Body:**\n    \n    ``` json\n      {\n        \"abilityDesc\": \"Descripción de la habilidad\"\n      }\n    \n     ```\n    \n- **Respuesta exitosa:** Retorna la habilidad creada.\n- **Códigos de respuesta:**\n    - `201`: Habilidad creada exitosamente.\n    - `400`: Error de validación en los datos de entrada.\n\n### Obtener todas las habilidades\n\n- **MÉTODO:** `GET`\n- **Descripción:** Obtiene todas las habilidades existentes.\n- **URL:** `/abilities`\n- **Respuesta exitosa:** Retorna un array con todas las habilidades.\n- **Códigos de respuesta:**\n    - `200`: Solicitud exitosa.\n\n### Obtener una habilidad por su ID\n\n- **MÉTODO:** `GET`\n- **Descripción:** Obtiene una habilidad específica por su ID.\n- **URL:** `/abilities/:id`\n- **Parámetros de URL:** `id` (ID de la habilidad a obtener)\n- **Respuesta exitosa:** Retorna la habilidad solicitada.\n- **Códigos de respuesta:**\n    - `200`: Solicitud exitosa.\n    - `404`: No se encontró la habilidad con el ID especificado.\n\n### Actualizar una habilidad\n\n- **MÉTODO:** `PATCH`\n- **Descripción:** Actualiza una habilidad existente.\n- **URL:** `/abilities/:id`\n- **Parámetros de URL:** `id` (ID de la habilidad a actualizar)\n- **Body:**\n    \n    ``` json\n      {\n        \"abilityDesc\": \"Nueva descripción de la habilidad\"\n      }\n    \n     ```\n    \n- **Respuesta exitosa:** Retorna la habilidad actualizada.\n- **Códigos de respuesta:**\n    - `200`: Habilidad actualizada exitosamente.\n    - `400`: Error de validación en los datos de entrada.\n    - `404`: No se encontró la habilidad con el ID especificado.\n\n### Eliminar una habilidad\n\n- **MÉTODO:** `DELETE`\n- **Descripción:** Elimina una habilidad existente.\n- **URL:** `/abilities/:id`\n- **Parámetros de URL:** `id` (ID de la habilidad a eliminar)\n- **Respuesta exitosa:** Retorna un mensaje de éxito.\n- **Códigos de respuesta:**\n    - `200`: Habilidad eliminada exitosamente.\n    - `404`: No se encontró la habilidad con el ID especificado.\n\n## DTOs Utilizados\n\n### CreateAbilityDto\n\n- **Descripción:** DTO para crear una nueva habilidad.\n- **Propiedades:**\n    - `abilityDesc`: Descripción de la habilidad. (Tipo: string, Longitud mínima: 3)\n\n### UpdateAbilityDto\n\n- **Descripción:** DTO para actualizar una habilidad existente.\n- **Propiedades:**\n    - `abilityDesc`: Nueva descripción de la habilidad. (Tipo: string, Longitud mínima: 3)"
 		},
 		{
 			"name": "Races",
@@ -150,14 +136,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/race",
-							"protocol": "http",
+							"raw": "{{baseurl}}/race",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"race"
 							]
 						}
@@ -170,15 +153,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/race/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"race",
 								"1"
 							]
 						}
@@ -191,14 +170,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/race",
-							"protocol": "http",
+							"raw": "{{baseurl}}/race",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"race"
 							]
 						}
@@ -211,14 +187,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/race/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/race/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"race",
 								"1"
 							]
@@ -241,14 +214,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/race/2",
-							"protocol": "http",
+							"raw": "{{baseurl}}/race/2",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"race",
 								"2"
 							]
@@ -276,14 +246,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/character",
-							"protocol": "http",
+							"raw": "{{baseurl}}/character",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"character"
 							]
 						}
@@ -296,14 +263,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/character",
-							"protocol": "http",
+							"raw": "{{baseurl}}/character",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"character"
 							]
 						}
@@ -316,14 +280,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/character/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/character/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"character",
 								"1"
 							]
@@ -337,14 +298,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/character/Info/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/character/Info/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"character",
 								"Info",
 								"1"
@@ -359,14 +317,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/character/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/character/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"character",
 								"1"
 							]
@@ -394,14 +349,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/abilities",
-							"protocol": "http",
+							"raw": "{{baseurl}}/abilities",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"abilities"
 							]
 						}
@@ -414,14 +366,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/abilities",
-							"protocol": "http",
+							"raw": "{{baseurl}}/abilities",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"abilities"
 							]
 						}
@@ -434,14 +383,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/abilities/2",
-							"protocol": "http",
+							"raw": "{{baseurl}}/abilities/2",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"abilities",
 								"2"
 							]
@@ -464,14 +410,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/abilities/2",
-							"protocol": "http",
+							"raw": "{{baseurl}}/abilities/2",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"abilities",
 								"2"
 							]
@@ -485,14 +428,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/abilities/2",
-							"protocol": "http",
+							"raw": "{{baseurl}}/abilities/2",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"abilities",
 								"2"
 							]
@@ -501,10 +441,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Character Abilities",
-			"item": []
 		},
 		{
 			"name": "Equipment",
@@ -524,14 +460,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/equipment",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment"
 							]
 						}
@@ -553,14 +486,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/equipment/2",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment/2",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment",
 								"2"
 							]
@@ -574,14 +504,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/equipment",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment"
 							]
 						}
@@ -594,14 +521,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/equipment/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment",
 								"1"
 							]
@@ -615,14 +539,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/equipment/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment",
 								"1"
 							]
@@ -641,14 +562,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/equipment-type",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment-type",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment-type"
 							]
 						}
@@ -670,14 +588,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/equipment-type",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment-type",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment-type"
 							]
 						}
@@ -690,14 +605,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/equipment-type/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment-type/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment-type",
 								"1"
 							]
@@ -720,14 +632,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/equipment-type/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment-type/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment-type",
 								"1"
 							]
@@ -741,14 +650,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/equipment-type/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/equipment-type/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"equipment-type",
 								"1"
 							]
@@ -776,14 +682,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/tags",
-							"protocol": "http",
+							"raw": "{{baseurl}}/tags",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"tags"
 							]
 						}
@@ -796,14 +699,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/tags",
-							"protocol": "http",
+							"raw": "{{baseurl}}/tags",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"tags"
 							]
 						}
@@ -816,14 +716,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/tags/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/tags/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"tags",
 								"1"
 							]
@@ -846,14 +743,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/tags/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/tags/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"tags",
 								"1"
 							]
@@ -867,15 +761,344 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/tags/1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/tags/1",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"tags",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Class",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/class",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/class/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"class",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descClass\":\"Paladin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/class",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}class/1",
+							"host": [
+								"{{baseurl}}class"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descClass\":\"Mago\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/class/3",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"class",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Archetype",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/archetype",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"archetype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/archetype/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"archetype",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameArchetype\":\"Campeon\",\r\n    \"descArchetype\":\"Critico con 19 compa!\",\r\n    \"IdClass\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/archetype",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"archetype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/archetype/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"archetype",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descArchetype\":\"HOla!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/archetype/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"archetype",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trait",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/trait",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"trait"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/trait/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"trait",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameTrait\":\"MEGA GRANDE\",\r\n    \"descTrait\":\"Permite al usuario SER MEGA GRANDE\",\r\n    \"level\": 3,\r\n    \"IdArchetype\":2,\r\n    \"IdClass\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/trait",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"trait"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/trait/3",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"trait",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"level\":5,\r\n    \"nameTrait\":\"Esto es prueba!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/trait/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"trait",
 								"1"
 							]
 						}
@@ -890,14 +1113,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/seed",
-					"protocol": "http",
+					"raw": "{{baseurl}}/seed",
 					"host": [
-						"localhost"
+						"{{baseurl}}"
 					],
-					"port": "3000",
 					"path": [
-						"api",
 						"seed"
 					]
 				}
@@ -930,7 +1150,7 @@
 	"variable": [
 		{
 			"key": "baseurl",
-			"value": "http://localhost:3000/api/",
+			"value": "http://localhost:3000/api",
 			"type": "string"
 		}
 	]

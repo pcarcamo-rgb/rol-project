@@ -12,6 +12,7 @@ import {
 } from 'typeorm';
 import { CharacterAbilities } from './character-abilities.entity';
 import { Equipment } from 'src/equipment/entities/equipment.entity';
+import { Class } from 'src/class/entities/class.entity';
 
 @Entity()
 export class Character {
@@ -26,7 +27,7 @@ export class Character {
   @JoinColumn({ name: 'idRace' })
   race: Race;
 
-  @Column('text')
+  @Column('varchar')
   name: string;
 
   @Column('int', {
@@ -91,4 +92,8 @@ export class Character {
     inverseJoinColumn: { name: 'IdEquipment' },
   })
   equipment: Equipment[];
+
+  @ManyToOne(() => Class, (clas) => clas.character)
+  @JoinColumn({ name: 'IdClass' })
+  class: Class;
 }

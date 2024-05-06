@@ -6,7 +6,7 @@ export class Tags {
   @PrimaryGeneratedColumn()
   IdTagEquipment: number;
 
-  @Column('text')
+  @Column('varchar', { unique: true })
   descTagEquipment: string;
 
   @ManyToMany(() => Equipment, (equipment) => equipment.tags)
