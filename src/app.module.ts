@@ -26,6 +26,7 @@ import { TalentModule } from './talent/talent.module';
       database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
+      dropSchema: true,
     }),
     CharacterModule,
     BackgroundModule,

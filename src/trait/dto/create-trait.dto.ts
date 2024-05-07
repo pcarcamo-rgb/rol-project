@@ -5,8 +5,6 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
-import { Archetype } from 'src/archetype/entities/archetype.entity';
-import { Class } from 'src/class/entities/class.entity';
 
 export class CreateTraitDto {
   @IsString()
@@ -24,9 +22,10 @@ export class CreateTraitDto {
   @IsNumber()
   @Min(1)
   @IsOptional()
-  IdClass?: Class;
+  IdClass?: number;
 
   @IsNumber()
   @Min(1)
-  IdArchetype: Archetype;
+  @IsOptional()
+  IdArchetype?: number;
 }

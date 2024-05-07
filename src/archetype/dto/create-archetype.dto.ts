@@ -1,5 +1,4 @@
 import { IsNumber, IsString, Min, MinLength } from 'class-validator';
-import { Class } from 'src/class/entities/class.entity';
 
 export class CreateArchetypeDto {
   @IsString()
@@ -12,5 +11,5 @@ export class CreateArchetypeDto {
 
   @IsNumber()
   @Min(1)
-  IdClass: Class;
+  IdClass: number;
 }

@@ -29,7 +29,7 @@ export class Class {
   trait: Trait[];
 
   @OneToMany(() => Character, (character) => character.class)
-  character: Character[];
+  characters: Character[];
 
   @OneToMany(() => Spell, (spell) => spell.classSpell)
   spells: Spell[];

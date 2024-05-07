@@ -15,6 +15,7 @@ import { EquipmentService } from 'src/equipment/equipment.service';
 import { Equipment } from 'src/equipment/entities/equipment.entity';
 import { Talent } from 'src/talent/entities/talent.entity';
 import { TalentService } from 'src/talent/talent.service';
+import { ClassService } from 'src/class/class.service';
 
 @Injectable()
 export class CharacterService {
@@ -27,12 +28,28 @@ export class CharacterService {
     private readonly equipmentService: EquipmentService,
     private readonly abilityService: AbilitiesService,
     private readonly talentService: TalentService,
+    private readonly classSerive: ClassService,
   ) {}
 
   async create(createCharacterDto: CreateCharacterDto) {
     try {
       const { competencySkills, ...characterToCreate } = createCharacterDto;
+
       const character = this.characterRepository.create(characterToCreate);
+
+      character.class = await this.classSerive.findOne(
+        createCharacterDto.IdClass,
+        true,
+      );
+      if (createCharacterDto.talents) {
+        const foundTalents: Talent[] = [];
+
+        for (const talent of createCharacterDto.talents) {
+          foundTalents.push(await this.talentService.findOne(+talent));
+        }
+        character.talents = foundTalents;
+      }
+
       await this.characterRepository.save(character);
 
       const insertCharAbilities = [];
@@ -53,15 +70,6 @@ export class CharacterService {
         delete ability.character;
       });
 
-      if (createCharacterDto.talents) {
-        const foundTalents: Talent[] = [];
-
-        for (const talent of createCharacterDto.talents) {
-          foundTalents.push(await this.talentService.findOne(+talent));
-        }
-        character.talents = foundTalents;
-      }
-
       return { character, abilities };
     } catch (error) {
       this.handleExceptions(error);
@@ -69,15 +77,18 @@ export class CharacterService {
   }
 
   async getAllinfo(id: number) {
-    const character = await this.characterRepository
-      .createQueryBuilder('character')
-      .leftJoinAndSelect('character.abilities', 'abilities')
-      .leftJoinAndSelect('abilities.ability', 'ability')
-      .leftJoinAndSelect('character.background', 'background')
-      .leftJoinAndSelect('character.race', 'race')
-      .where('character.idCharacter = :id', { id })
-      .getOne();
-
+    const character = await this.characterRepository.findOne({
+      where: {
+        idCharacter: id,
+      },
+      relations: {
+        abilities: true,
+        background: true,
+        class: true,
+        equipment: true,
+        talents: true,
+      },
+    });
     if (!character)
       throw new NotFoundException(`Character with id ${id} not found.`);
 

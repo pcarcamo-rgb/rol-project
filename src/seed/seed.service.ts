@@ -5,10 +5,13 @@ import { CharacterService } from 'src/character/character.service';
 import { RaceService } from 'src/race/race.service';
 import {
   abilitiesData,
+  archetypeData,
   backgroundData,
   charactersData,
+  classData,
   equipmentData,
   racesData,
+  traitData,
   typeEquipmentData,
 } from './data/seed-data';
 import { Background } from 'src/background/entities/background.entity';
@@ -22,6 +25,9 @@ import { Tags } from 'src/tags/entities/tag.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Equipment } from 'src/equipment/entities/equipment.entity';
+import { ClassService } from 'src/class/class.service';
+import { ArchetypeService } from 'src/archetype/archetype.service';
+import { TraitService } from 'src/trait/trait.service';
 
 interface CreateCharacterDto {
   name: string;
@@ -37,6 +43,7 @@ interface CreateCharacterDto {
   race: Race;
   competencySkills: number[];
   equipment: Equipment[];
+  IdClass: number;
 }
 
 @Injectable()
@@ -49,6 +56,9 @@ export class SeedService {
     private readonly tagsService: TagsService,
     private readonly typeEquipmentService: TypeEquipmentService,
     private readonly equipmentService: EquipmentService,
+    private readonly classService: ClassService,
+    private readonly archetypeService: ArchetypeService,
+    private readonly traitService: TraitService,
 
     @InjectRepository(Equipment)
     private readonly equipmentRepository: Repository<Equipment>,
@@ -62,6 +72,9 @@ export class SeedService {
       await this.insertTags();
       await this.insertTypeEquipment();
       await this.insertEquipment();
+      await this.insertClasses();
+      await this.insertArchetypes();
+      await this.insertTraits();
 
       await this.insertCharacters();
       return 'Seed Executed.';
@@ -71,9 +84,26 @@ export class SeedService {
     }
   }
 
+  private async insertTraits() {
+    for (const trait of traitData) {
+      await this.traitService.create(trait);
+    }
+  }
+
   private async insertTags() {
     for (const tag of tagsData) {
       await this.tagsService.create({ descTagEquipment: tag.descTagEquipment });
+    }
+  }
+
+  private async insertClasses() {
+    for (const clas of classData) {
+      await this.classService.create(clas);
+    }
+  }
+  private async insertArchetypes() {
+    for (const archetype of archetypeData) {
+      await this.archetypeService.create(archetype);
     }
   }
 
@@ -152,6 +182,7 @@ export class SeedService {
         race: race,
         competencySkills: character.competencySkills,
         equipment: equipmentFound,
+        IdClass: character.class,
       };
 
       return this.characterService.create(createCharacterDto);

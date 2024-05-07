@@ -20,6 +20,10 @@ export class CreateCharacterDto {
 
   @IsNumber()
   @Min(1)
+  IdClass: number;
+
+  @IsNumber()
+  @Min(1)
   race: Race;
 
   @IsString()

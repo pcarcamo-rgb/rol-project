@@ -10,5 +10,6 @@ import { ArchetypeModule } from 'src/archetype/archetype.module';
   controllers: [TraitController],
   providers: [TraitService],
   imports: [TypeOrmModule.forFeature([Trait]), ClassModule, ArchetypeModule],
+  exports: [TraitService],
 })
 export class TraitModule {}

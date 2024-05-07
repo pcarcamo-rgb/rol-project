@@ -21,7 +21,7 @@ export class ArchetypeService {
   async create(createArchetypeDto: CreateArchetypeDto) {
     const { IdClass, ...archetype } = createArchetypeDto;
 
-    const clas: Class = await this.classService.findOne(+IdClass, true);
+    const clas: Class = await this.classService.findOne(IdClass, true);
 
     const newArchetype = this.archetypeRepository.create({
       class: clas,

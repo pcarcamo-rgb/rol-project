@@ -20,14 +20,6 @@ export class Character {
   @PrimaryGeneratedColumn()
   idCharacter: number;
 
-  @ManyToOne(() => Background)
-  @JoinColumn({ name: 'idBackground' })
-  background: Background;
-
-  @ManyToOne(() => Race)
-  @JoinColumn({ name: 'idRace' })
-  race: Race;
-
   @Column('varchar')
   name: string;
 
@@ -94,7 +86,7 @@ export class Character {
   })
   equipment: Equipment[];
 
-  @ManyToOne(() => Class, (clas) => clas.character)
+  @ManyToOne(() => Class)
   @JoinColumn({ name: 'IdClass' })
   class: Class;
 
@@ -109,4 +101,12 @@ export class Character {
     },
   })
   talents: Talent[];
+
+  @ManyToOne(() => Background)
+  @JoinColumn({ name: 'idBackground' })
+  background: Background;
+
+  @ManyToOne(() => Race)
+  @JoinColumn({ name: 'idRace' })
+  race: Race;
 }

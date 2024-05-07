@@ -24,6 +24,14 @@ interface SeedEquipment {
   price: number;
 }
 
+interface SeedTrait {
+  nameTrait: string;
+  descTrait: string;
+  level: number;
+  IdClass?: number;
+  IdArchetype?: number;
+}
+
 interface SeedBackground {
   backgroundName: string;
   background: string;
@@ -46,7 +54,73 @@ interface Character {
   race: number;
   competencySkills: number[];
   equipment: number[];
+  class: number;
 }
+
+interface SeedArchetype {
+  descArchetype: string;
+  nameArchetype: string;
+  IdClass: number;
+}
+
+interface SeedClass {
+  descClass: string;
+  lifeDice: number;
+}
+
+export const traitData: SeedTrait[] = [
+  {
+    nameTrait: 'Double Attack',
+    descTrait: 'When you attack, you attack twice',
+    level: 5,
+    IdClass: 2,
+  },
+  {
+    nameTrait: 'Spell Casting',
+    descTrait: 'SMITE!',
+    level: 2,
+    IdClass: 3,
+    IdArchetype: 3,
+  },
+  {
+    nameTrait: 'Super Blast',
+    descTrait: 'Blast but Super',
+    level: 3,
+    IdClass: 1,
+  },
+];
+
+export const classData: SeedClass[] = [
+  {
+    descClass: 'Warlock',
+    lifeDice: 8,
+  },
+  {
+    descClass: 'Barbarian',
+    lifeDice: 12,
+  },
+  {
+    descClass: 'Paladin',
+    lifeDice: 10,
+  },
+];
+export const archetypeData: SeedArchetype[] = [
+  {
+    nameArchetype: 'Totemic',
+    descArchetype: 'Totemic Barbarian',
+    IdClass: 2,
+  },
+  {
+    nameArchetype: 'Time Warlock',
+    descArchetype: 'The TIME',
+    IdClass: 1,
+  },
+  {
+    nameArchetype: 'Vengance',
+    descArchetype: 'VENGANCEEEEEE',
+    IdClass: 3,
+  },
+];
 
 export const tagsData: SeedTags[] = [
   {
@@ -184,6 +258,7 @@ export const charactersData: Character[] = [
     race: 1, // Human
     competencySkills: [1, 4, 7, 9],
     equipment: [1],
+    class: 1,
   },
   {
     name: 'Lirelle',
@@ -199,6 +274,7 @@ export const charactersData: Character[] = [
     race: 2, // Elf
     competencySkills: [3, 5, 8, 10],
     equipment: [2, 1],
+    class: 2,
   },
   {
     name: 'Thorin',
@@ -214,5 +290,6 @@ export const charactersData: Character[] = [
     race: 3, // Dwarf
     competencySkills: [2, 6, 7, 9],
     equipment: [1, 2, 3],
+    class: 3,
   },
 ];

@@ -1,4 +1,10 @@
-import { IsNumber, IsString, MinLength } from 'class-validator';
+import {
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+  IsString,
+  MinLength,
+} from 'class-validator';
 
 export class CreateClassDto {
   @IsString()
@@ -7,4 +13,8 @@ export class CreateClassDto {
 
   @IsNumber()
   lifeDice: number;
+
+  @IsBoolean()
+  @IsOptional()
+  isSpellCaster?: boolean;
 }

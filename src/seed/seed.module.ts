@@ -9,6 +9,9 @@ import { TagsModule } from 'src/tags/tags.module';
 import { EquipmentModule } from 'src/equipment/equipment.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Equipment } from 'src/equipment/entities/equipment.entity';
+import { ClassModule } from 'src/class/class.module';
+import { ArchetypeModule } from 'src/archetype/archetype.module';
+import { TraitModule } from 'src/trait/trait.module';
 
 @Module({
   controllers: [SeedController],
@@ -21,6 +24,9 @@ import { Equipment } from 'src/equipment/entities/equipment.entity';
     TagsModule,
     EquipmentModule,
     TypeOrmModule.forFeature([Equipment]),
+    ClassModule,
+    ArchetypeModule,
+    TraitModule,
   ],
 })
 export class SeedModule {}

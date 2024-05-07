@@ -24,6 +24,7 @@ export class Trait {
   @ManyToOne(() => Class, (clas) => clas.trait, {
     cascade: true,
     onUpdate: 'CASCADE',
+    nullable: true,
   })
   @JoinColumn({ name: 'IdClass' })
   class: Class;
