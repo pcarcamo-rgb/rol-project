@@ -9,7 +9,9 @@ export class Background {
   @Column('varchar', { unique: true })
   backgroundName: string;
 
-  @Column('varchar')
+  @Column('varchar', {
+    length: 2000,
+  })
   background: string;
 
   @OneToMany(() => Character, (character) => character.background)

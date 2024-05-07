@@ -11,6 +11,8 @@ import { TagsModule } from './tags/tags.module';
 import { ClassModule } from './class/class.module';
 import { TraitModule } from './trait/trait.module';
 import { ArchetypeModule } from './archetype/archetype.module';
+import { SpellModule } from './spell/spell.module';
+import { TalentModule } from './talent/talent.module';
 
 @Module({
   imports: [
@@ -35,6 +37,8 @@ import { ArchetypeModule } from './archetype/archetype.module';
     ClassModule,
     TraitModule,
     ArchetypeModule,
+    SpellModule,
+    TalentModule,
   ],
   controllers: [],
   providers: [],

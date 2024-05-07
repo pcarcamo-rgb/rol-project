@@ -13,6 +13,7 @@ import {
 import { CharacterAbilities } from './character-abilities.entity';
 import { Equipment } from 'src/equipment/entities/equipment.entity';
 import { Class } from 'src/class/entities/class.entity';
+import { Talent } from 'src/talent/entities/talent.entity';
 
 @Entity()
 export class Character {
@@ -96,4 +97,16 @@ export class Character {
   @ManyToOne(() => Class, (clas) => clas.character)
   @JoinColumn({ name: 'IdClass' })
   class: Class;
+
+  @ManyToMany(() => Talent, (talent) => talent.character)
+  @JoinTable({
+    name: 'character_talent',
+    joinColumn: {
+      name: 'idCharacter',
+    },
+    inverseJoinColumn: {
+      name: 'idTalent',
+    },
+  })
+  talents: Talent[];
 }

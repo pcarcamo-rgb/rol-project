@@ -11,6 +11,7 @@ import {
 import { Background } from 'src/background/entities/background.entity';
 import { Equipment } from 'src/equipment/entities/equipment.entity';
 import { Race } from 'src/race/entities/race.entity';
+import { Talent } from 'src/talent/entities/talent.entity';
 
 export class CreateCharacterDto {
   @IsNumber()
@@ -26,7 +27,6 @@ export class CreateCharacterDto {
   name: string;
 
   @IsNumber()
-  @IsOptional()
   @Min(1)
   level: number;
 
@@ -59,5 +59,10 @@ export class CreateCharacterDto {
   competencySkills: number[];
 
   @IsArray()
-  equipment: Equipment[];
+  @IsOptional()
+  equipment?: Equipment[];
+
+  @IsArray()
+  @IsOptional()
+  talents?: Talent[];
 }

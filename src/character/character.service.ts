@@ -13,6 +13,8 @@ import { CharacterAbilities } from './entities/character-abilities.entity';
 import { AbilitiesService } from 'src/abilities/abilities.service';
 import { EquipmentService } from 'src/equipment/equipment.service';
 import { Equipment } from 'src/equipment/entities/equipment.entity';
+import { Talent } from 'src/talent/entities/talent.entity';
+import { TalentService } from 'src/talent/talent.service';
 
 @Injectable()
 export class CharacterService {
@@ -24,6 +26,7 @@ export class CharacterService {
 
     private readonly equipmentService: EquipmentService,
     private readonly abilityService: AbilitiesService,
+    private readonly talentService: TalentService,
   ) {}
 
   async create(createCharacterDto: CreateCharacterDto) {
@@ -49,6 +52,15 @@ export class CharacterService {
       abilities.forEach((ability) => {
         delete ability.character;
       });
+
+      if (createCharacterDto.talents) {
+        const foundTalents: Talent[] = [];
+
+        for (const talent of createCharacterDto.talents) {
+          foundTalents.push(await this.talentService.findOne(+talent));
+        }
+        character.talents = foundTalents;
+      }
 
       return { character, abilities };
     } catch (error) {
@@ -93,7 +105,7 @@ export class CharacterService {
   async update(id: number, updateCharacterDto: UpdateCharacterDto) {
     const character = await this.findOne(id);
 
-    const { equipment, competencySkills } = updateCharacterDto;
+    const { equipment, competencySkills, talents } = updateCharacterDto;
 
     if (equipment) {
       const foundEquipment: Equipment[] = [];
@@ -102,6 +114,16 @@ export class CharacterService {
       }
       Object.assign(character, updateCharacterDto);
       character.equipment = foundEquipment;
+    }
+
+    if (talents) {
+      const foundTalents: Talent[] = [];
+
+      for (const talent of talents) {
+        foundTalents.push(await this.talentService.findOne(+talent));
+      }
+      Object.assign(character, updateCharacterDto);
+      character.talents = foundTalents;
     }
 
     if (competencySkills) {

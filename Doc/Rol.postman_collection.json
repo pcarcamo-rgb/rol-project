@@ -116,7 +116,7 @@
 					"response": []
 				}
 			],
-			"description": "## Endpoints Backgrounds\n\n### Crear una habilidad\n\n- **MÉTODO:** `POST`\n- **Descripción:** Crea una nueva habilidad.\n- **URL:** `/abilities`\n- **Body:**\n    \n    ``` json\n      {\n        \"abilityDesc\": \"Descripción de la habilidad\"\n      }\n    \n     ```\n    \n- **Respuesta exitosa:** Retorna la habilidad creada.\n- **Códigos de respuesta:**\n    - `201`: Habilidad creada exitosamente.\n    - `400`: Error de validación en los datos de entrada.\n\n### Obtener todas las habilidades\n\n- **MÉTODO:** `GET`\n- **Descripción:** Obtiene todas las habilidades existentes.\n- **URL:** `/abilities`\n- **Respuesta exitosa:** Retorna un array con todas las habilidades.\n- **Códigos de respuesta:**\n    - `200`: Solicitud exitosa.\n\n### Obtener una habilidad por su ID\n\n- **MÉTODO:** `GET`\n- **Descripción:** Obtiene una habilidad específica por su ID.\n- **URL:** `/abilities/:id`\n- **Parámetros de URL:** `id` (ID de la habilidad a obtener)\n- **Respuesta exitosa:** Retorna la habilidad solicitada.\n- **Códigos de respuesta:**\n    - `200`: Solicitud exitosa.\n    - `404`: No se encontró la habilidad con el ID especificado.\n\n### Actualizar una habilidad\n\n- **MÉTODO:** `PATCH`\n- **Descripción:** Actualiza una habilidad existente.\n- **URL:** `/abilities/:id`\n- **Parámetros de URL:** `id` (ID de la habilidad a actualizar)\n- **Body:**\n    \n    ``` json\n      {\n        \"abilityDesc\": \"Nueva descripción de la habilidad\"\n      }\n    \n     ```\n    \n- **Respuesta exitosa:** Retorna la habilidad actualizada.\n- **Códigos de respuesta:**\n    - `200`: Habilidad actualizada exitosamente.\n    - `400`: Error de validación en los datos de entrada.\n    - `404`: No se encontró la habilidad con el ID especificado.\n\n### Eliminar una habilidad\n\n- **MÉTODO:** `DELETE`\n- **Descripción:** Elimina una habilidad existente.\n- **URL:** `/abilities/:id`\n- **Parámetros de URL:** `id` (ID de la habilidad a eliminar)\n- **Respuesta exitosa:** Retorna un mensaje de éxito.\n- **Códigos de respuesta:**\n    - `200`: Habilidad eliminada exitosamente.\n    - `404`: No se encontró la habilidad con el ID especificado.\n\n## DTOs Utilizados\n\n### CreateAbilityDto\n\n- **Descripción:** DTO para crear una nueva habilidad.\n- **Propiedades:**\n    - `abilityDesc`: Descripción de la habilidad. (Tipo: string, Longitud mínima: 3)\n\n### UpdateAbilityDto\n\n- **Descripción:** DTO para actualizar una habilidad existente.\n- **Propiedades:**\n    - `abilityDesc`: Nueva descripción de la habilidad. (Tipo: string, Longitud mínima: 3)"
+			"description": "## Create Background\n\nCrea un nuevo fondo.\n\n- **URL**`/background`\n- **Método HTTP**`POST`\n- **Body Params**\n    \n    | Parámetro | Tipo | Descripción |\n    | --- | --- | --- |\n    | backgroundName | string | Nombre del nuevo fondo |\n    | background | string | Descripción del nuevo fondo |\n    \n- **Ejemplo de solicitud**\n    \n    ``` json\n          {\n            \"backgroundName\": \"Nombre del fondo\",\n            \"background\": \"Descripción del fondo\"\n          }\n    \n     ```\n    \n\n## Get All Backgrounds\n\nObtiene todos los fondos.\n\n- **URL**`/background`\n- **Método HTTP**`GET`\n- **Respuesta de Ejemplo**\n    \n    ``` json\n          [\n            {\n              \"IdBackground\": 1,\n              \"backgroundName\": \"Nombre del fondo\",\n              \"background\": \"Descripción del fondo\"\n            },\n            {\n              \"IdBackground\": 2,\n              \"backgroundName\": \"Otro fondo\",\n              \"background\": \"Descripción de otro fondo\"\n            }\n          ]\n    \n     ```\n    \n\n## Get Background by ID\n\nObtiene un fondo por su ID.\n\n- **URL**`/background/:id`\n- **Método HTTP**`GET`\n- **Parámetros de Ruta**\n    \n    | Parámetro | Tipo | Descripción |\n    | --- | --- | --- |\n    | id | number | ID del fondo |\n    \n- **Respuesta de Ejemplo**\n    \n    ``` json\n          {\n            \"IdBackground\": 1,\n            \"backgroundName\": \"Nombre del fondo\",\n            \"background\": \"Descripción del fondo\"\n          }\n    \n     ```\n    \n\n## Update Background\n\nActualiza un fondo existente.\n\n- **URL**`/background/:id`\n- **Método HTTP**`PATCH`\n- **Parámetros de Ruta**\n    \n    | Parámetro | Tipo | Descripción |\n    | --- | --- | --- |\n    | id | number | ID del fondo |\n    \n- **Body Params**\n    \n    | Parámetro | Tipo | Descripción |\n    | --- | --- | --- |\n    | backgroundName | string | Nuevo nombre del fondo |\n    | background | string | Nueva descripción del fondo |\n    \n- **Ejemplo de solicitud**\n    \n    ``` json\n          {\n            \"backgroundName\": \"Nuevo nombre del fondo\",\n            \"background\": \"Nueva descripción del fondo\"\n          }\n    \n     ```\n    \n\n## Delete Background\n\nElimina un fondo existente.\n\n- **URL**`/background/:id`\n- **Método HTTP**`DELETE`\n- **Parámetros de Ruta**\n    \n    | Parámetro | Tipo | Descripción |\n    | --- | --- | --- |\n    | id | number | ID del fondo |\n    \n- **Respuesta de Ejemplo**\n    \n    ``` json\n          \"Delete Success.\"\n    \n     ```"
 		},
 		{
 			"name": "Races",
@@ -226,7 +226,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "## Create Race\n\nCrea una nueva raza.\n\n- **URL**\n\n  `/race`\n\n- **Método HTTP**\n\n  `POST`\n\n- **Body Params**\n\n  | Parámetro | Tipo   | Descripción           |\n  | --------- | ------ | --------------------- |\n  | race      | string | Nombre de la nueva raza |\n\n- **Ejemplo de solicitud**\n\n  ```json\n  {\n    \"race\": \"Nombre de la raza\"\n  }\n  ```\n\n## Get All Races\n\nObtiene todas las razas.\n\n- **URL**\n\n  `/race`\n\n- **Método HTTP**\n\n  `GET`\n\n- **Respuesta de Ejemplo**\n\n  ```json\n  [\n    {\n      \"idRace\": 1,\n      \"race\": \"Nombre de la raza\"\n    },\n    {\n      \"idRace\": 2,\n      \"race\": \"Otra raza\"\n    }\n  ]\n  ```\n\n## Get Race by ID\n\nObtiene una raza por su ID.\n\n- **URL**\n\n  `/race/:id`\n\n- **Método HTTP**\n\n  `GET`\n\n- **Parámetros de Ruta**\n\n  | Parámetro | Tipo   | Descripción      |\n  | --------- | ------ | ---------------- |\n  | id        | number | ID de la raza    |\n\n- **Respuesta de Ejemplo**\n\n  ```json\n  {\n    \"idRace\": 1,\n    \"race\": \"Nombre de la raza\"\n  }\n  ```\n\n## Update Race\n\nActualiza una raza existente.\n\n- **URL**\n\n  `/race/:id`\n\n- **Método HTTP**\n\n  `PATCH`\n\n- **Parámetros de Ruta**\n\n  | Parámetro | Tipo   | Descripción      |\n  | --------- | ------ | ---------------- |\n  | id        | number | ID de la raza    |\n\n- **Body Params**\n\n  | Parámetro | Tipo   | Descripción           |\n  | --------- | ------ | --------------------- |\n  | race      | string | Nuevo nombre de la raza |\n\n- **Ejemplo de solicitud**\n\n  ```json\n  {\n    \"race\": \"Nuevo nombre de la raza\"\n  }\n  ```\n\n## Delete Race\n\nElimina una raza existente.\n\n- **URL**\n\n  `/race/:id`\n\n- **Método HTTP**\n\n  `DELETE`\n\n- **Parámetros de Ruta**\n\n  | Parámetro | Tipo   | Descripción      |\n  | --------- | ------ | ---------------- |\n  | id        | number | ID de la raza    |\n\n- **Respuesta de Ejemplo**\n\n  ```json\n  \"Delete Success.\"\n  ```\n"
 		},
 		{
 			"name": "Character",
@@ -329,7 +330,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### Crear Personaje\n\nEndpoint: `POST /character`\n\nCrea un nuevo personaje.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"background\": \"number\",\n  \"race\": \"number\",\n  \"name\": \"string\",\n  \"level\": \"number\",\n  \"strength\": \"number\",\n  \"dexterity\": \"number\",\n  \"constitution\": \"number\",\n  \"intelligence\": \"number\",\n  \"wisdom\": \"number\",\n  \"charisma\": \"number\",\n  \"competencySkills\": \"[number]\",\n  \"equipment\": \"[Equipment]\",\n  \"talents\": \"[Talent]\"\n}\n\n ```\n\n- `background` (number, requerido): El ID del trasfondo del personaje.\n    \n- `race` (number, requerido): El ID de la raza del personaje.\n    \n- `name` (string, requerido): El nombre del personaje.\n    \n- `level` (number, requerido): El nivel del personaje.\n    \n- `strength` (number, requerido): La fuerza del personaje.\n    \n- `dexterity` (number, requerido): La destreza del personaje.\n    \n- `constitution` (number, requerido): La constitución del personaje.\n    \n- `intelligence` (number, requerido): La inteligencia del personaje.\n    \n- `wisdom` (number, requerido): La sabiduría del personaje.\n    \n- `charisma` (number, requerido): El carisma del personaje.\n    \n- `competencySkills` (\\[number\\], requerido): Lista de habilidades competentes del personaje.\n    \n- `equipment` (\\[Equipment\\], opcional): Lista de equipos del personaje.\n    \n- `talents` (\\[Talent\\], opcional): Lista de talentos del personaje.\n    \n\n#### Obtener Todos los Personajes\n\nEndpoint: `GET /character`\n\nRecupera todos los personajes.\n\n#### Obtener Información de un Personaje por ID\n\nEndpoint: `GET /character/:id`\n\nRecupera la información detallada de un personaje por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del personaje.\n    \n\n#### Actualizar Personaje\n\nEndpoint: `PATCH /character/:id`\n\nActualiza un personaje existente por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del personaje.\n    \n\n##### Cuerpo de la Solicitud (Opcional)\n\nLos campos que pueden actualizarse son los mismos que se utilizan para crear un personaje.\n\n#### Eliminar Personaje\n\nEndpoint: `DELETE /character/:id`\n\nElimina un personaje por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del personaje."
 		},
 		{
 			"name": "Abilities",
@@ -440,7 +442,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### Crear Habilidad\n\nEndpoint: `POST /abilities`\n\nCrea una nueva habilidad.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"abilityDesc\": \"string\",\n  \"caracteristic\": \"string\"\n}\n\n ```\n\n- `abilityDesc` (string, requerido): La descripción de la habilidad.\n    \n- `caracteristic` (string, requerido): La característica asociada a la habilidad.\n    \n\n#### Obtener Todas las Habilidades\n\nEndpoint: `GET /abilities`\n\nRecupera todas las habilidades.\n\n#### Obtener Habilidad por ID\n\nEndpoint: `GET /abilities/:id`\n\nRecupera una habilidad por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID de la habilidad.\n    \n\n#### Actualizar Habilidad\n\nEndpoint: `PATCH /abilities/:id`\n\nActualiza una habilidad existente por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID de la habilidad.\n    \n\n##### Cuerpo de la Solicitud (Opcional)\n\nLos campos que pueden actualizarse son los mismos que se utilizan para crear una habilidad.\n\n#### Eliminar Habilidad\n\nEndpoint: `DELETE /abilities/:id`\n\nElimina una habilidad por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID de la habilidad."
 		},
 		{
 			"name": "Equipment",
@@ -551,7 +554,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### Crear Equipo\n\nEndpoint: `POST /equipment`\n\nCrea un nuevo equipo.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"nameEquipment\": \"string\",\n  \"descEquipment\": \"string\",\n  \"damageEquipment\": \"string\",\n  \"armorEquipment\": \"number\",\n  \"typeEquipment\": \"number\",\n  \"tags\": \"[number]\",\n  \"typeOfDamage\": \"string\",\n  \"price\": \"number\"\n}\n\n ```\n\n- `nameEquipment` (string, requerido): El nombre del equipo.\n    \n- `descEquipment` (string, requerido): La descripción del equipo.\n    \n- `damageEquipment` (string, opcional): El daño del equipo.\n    \n- `armorEquipment` (number, opcional): La armadura del equipo.\n    \n- `typeEquipment` (number, requerido): El ID del tipo de equipo.\n    \n- `tags` (\\[number\\], requerido): Lista de IDs de etiquetas del equipo.\n    \n- `typeOfDamage` (string, opcional): El tipo de daño del equipo.\n    \n- `price` (number, requerido): El precio del equipo.\n    \n\n#### Obtener Todos los Equipos\n\nEndpoint: `GET /equipment`\n\nRecupera todos los equipos.\n\n#### Obtener Equipo por ID\n\nEndpoint: `GET /equipment/:id`\n\nRecupera un equipo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del equipo.\n    \n\n#### Actualizar Equipo\n\nEndpoint: `PATCH /equipment/:id`\n\nActualiza un equipo existente por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del equipo.\n    \n\n##### Cuerpo de la Solicitud (Opcional)\n\nLos campos que pueden actualizarse son los mismos que se utilizan para crear un equipo.\n\n#### Eliminar Equipo\n\nEndpoint: `DELETE /equipment/:id`\n\nElimina un equipo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del equipo."
 		},
 		{
 			"name": "Equipment Type",
@@ -662,7 +666,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### Obtener Todos los Tipos de Equipo\n\nEndpoint: `GET /equipment-type`\n\nRecupera todos los tipos de equipo.\n\n#### Obtener Tipo de Equipo por ID\n\nEndpoint: `GET /equipment-type/:id`\n\nRecupera un tipo de equipo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del tipo de equipo.\n    \n\n#### Crear Tipo de Equipo\n\nEndpoint: `POST /equipment-type`\n\nCrea un nuevo tipo de equipo.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"descTypeEquipment\": \"string\",\n  \"isArmor\": \"boolean\",\n  \"isWeapon\": \"boolean\"\n}\n\n ```\n\n- `descTypeEquipment` (string, requerido): La descripción del tipo de equipo.\n    \n- `isArmor` (boolean, opcional): Indica si el tipo de equipo es una armadura.\n    \n- `isWeapon` (boolean, opcional): Indica si el tipo de equipo es un arma.\n    \n\n#### Actualizar Tipo de Equipo\n\nEndpoint: `PATCH /equipment-type/:id`\n\nActualiza un tipo de equipo existente por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del tipo de equipo.\n    \n\n##### Cuerpo de la Solicitud (Opcional)\n\nLos campos que pueden actualizarse son los mismos que se utilizan para crear un tipo de equipo.\n\n#### Eliminar Tipo de Equipo\n\nEndpoint: `DELETE /equipment-type/:id`\n\nElimina un tipo de equipo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del tipo de equipo."
 		},
 		{
 			"name": "Tags",
@@ -773,7 +778,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### Crear Etiqueta de Equipo\n\nEndpoint: `POST /tags`\n\nCrea una nueva etiqueta de equipo.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"descTagEquipment\": \"string\"\n}\n\n ```\n\n- `descTagEquipment` (string, requerido): La descripción de la etiqueta de equipo.\n    \n\n#### Obtener Todas las Etiquetas de Equipo\n\nEndpoint: `GET /tags`\n\nRecupera todas las etiquetas de equipo.\n\n#### Obtener Etiqueta de Equipo por ID\n\nEndpoint: `GET /tags/:id`\n\nRecupera una etiqueta de equipo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID de la etiqueta de equipo.\n    \n\n#### Actualizar Etiqueta de Equipo\n\nEndpoint: `PATCH /tags/:id`\n\nActualiza una etiqueta de equipo existente por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID de la etiqueta de equipo.\n    \n\n##### Cuerpo de la Solicitud (Opcional)\n\nLos campos que pueden actualizarse son los mismos que se utilizan para crear una etiqueta de equipo.\n\n#### Eliminar Etiqueta de Equipo\n\nEndpoint: `DELETE /tags/:id`\n\nElimina una etiqueta de equipo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID de la etiqueta de equipo."
 		},
 		{
 			"name": "Class",
@@ -883,7 +889,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### Crear Clase\n\nEndpoint: `POST /class`\n\nCrea una nueva clase.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"descClass\": \"string\",\n  \"lifeDice\": \"number\"\n}\n\n ```\n\n- `descClass` (string, requerido): La descripción de la clase.\n    \n- `lifeDice` (number, requerido): El tipo de dado de vida de la clase.\n    \n\n#### Obtener Todas las Clases\n\nEndpoint: `GET /class`\n\nRecupera todas las clases.\n\n#### Obtener Clase por ID\n\nEndpoint: `GET /class/:id`\n\nRecupera una clase por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID de la clase.\n    \n\n#### Actualizar Clase\n\nEndpoint: `PATCH /class/:id`\n\nActualiza una clase existente por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID de la clase.\n    \n\n##### Cuerpo de la Solicitud (Opcional)\n\nLos campos que pueden actualizarse son los mismos que se utilizan para crear una clase.\n\n#### Eliminar Clase\n\nEndpoint: `DELETE /class/:id`\n\nElimina una clase por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID de la clase."
 		},
 		{
 			"name": "Archetype",
@@ -994,7 +1001,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### Crear Arquetipo\n\nEndpoint: `POST /archetype`\n\nCrea un nuevo arquetipo.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"nameArchetype\": \"string\",\n  \"descArchetype\": \"string\",\n  \"IdClass\": \"number\"\n}\n\n ```\n\n- `nameArchetype` (string, requerido): El nombre del arquetipo.\n    \n- `descArchetype` (string, requerido): La descripción del arquetipo.\n    \n- `IdClass` (number, requerido): El ID de la clase asociada al arquetipo.\n    \n\n#### Obtener Todos los Arquetipos\n\nEndpoint: `GET /archetype`\n\nRecupera todos los arquetipos.\n\n#### Obtener Arquetipo por ID\n\nEndpoint: `GET /archetype/:id`\n\nRecupera un arquetipo único por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del arquetipo.\n    \n\n#### Actualizar Arquetipo\n\nEndpoint: `PATCH /archetype/:id`\n\nActualiza un arquetipo existente.\n\n- `id` (number, parámetro de ruta, requerido): El ID del arquetipo.\n    \n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"nameArchetype\": \"string\",\n  \"descArchetype\": \"string\",\n  \"IdClass\": \"number\"\n}\n\n ```\n\n- `nameArchetype` (string, opcional): El nombre actualizado del arquetipo.\n    \n- `descArchetype` (string, opcional): La descripción actualizada del arquetipo.\n    \n- `IdClass` (number, opcional): El ID actualizado de la clase asociada al arquetipo.\n    \n\n#### Eliminar Arquetipo\n\nEndpoint: `DELETE /archetype/:id`\n\nElimina un arquetipo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del arquetipo."
 		},
 		{
 			"name": "Trait",
@@ -1105,7 +1113,204 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### Crear Rasgo\n\nEndpoint: `POST /trait`\n\nCrea un nuevo rasgo.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"nameTrait\": \"string\",\n  \"descTrait\": \"string\",\n  \"level\": \"number\",\n  \"IdClass\": \"number\",\n  \"IdArchetype\": \"number\"\n}\n\n ```\n\n- `nameTrait` (string, requerido): El nombre del rasgo.\n    \n- `descTrait` (string, requerido): La descripción del rasgo.\n    \n- `level` (number, requerido): El nivel del rasgo.\n    \n- `IdClass` (number, opcional): El ID de la clase asociada al rasgo.\n    \n- `IdArchetype` (number, requerido): El ID del arquetipo asociado al rasgo.\n    \n\n#### Obtener Todos los Rasgos\n\nEndpoint: `GET /trait`\n\nRecupera todos los rasgos.\n\n#### Obtener Rasgo por ID\n\nEndpoint: `GET /trait/:id`\n\nRecupera un rasgo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del rasgo.\n    \n\n#### Actualizar Rasgo\n\nEndpoint: `PATCH /trait/:id`\n\nActualiza un rasgo existente por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del rasgo.\n    \n\n##### Cuerpo de la Solicitud (Opcional)\n\nLos campos que pueden actualizarse son los mismos que se utilizan para crear un rasgo.\n\n#### Eliminar Rasgo\n\nEndpoint: `DELETE /trait/:id`\n\nElimina un rasgo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del rasgo."
+		},
+		{
+			"name": "Spells",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/spell",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"spell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/spell/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"spell",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idClass\":1,\r\n    \"nameSpell\":\"Descarga sobrenatural\",\r\n    \"levelSpell\":1,\r\n    \"castTime\":\"Action\",\r\n    \"range\":300,\r\n    \"dmgSpell\":\"1d10\",\r\n    \"descSpell\":\"Throw a descarga sobrenatural\",\r\n    \"atHigherLevel\":\"aumenta a 2d10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/spell",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"spell"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/spell/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"spell",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "#### Crear Hechizo\n\nEndpoint: `POST /spell`\n\nCrea un nuevo hechizo.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"idClass\": \"number\",\n  \"nameSpell\": \"string\",\n  \"levelSpell\": \"number\",\n  \"castTime\": \"string\",\n  \"componentsSpell\": \"string\",\n  \"range\": \"number\",\n  \"savingThrow\": \"string\",\n  \"dmgSpell\": \"string\",\n  \"descSpell\": \"string\",\n  \"atHigherLevels\": \"string\"\n}\n\n ```\n\n- `idClass` (number, requerido): El ID de la clase asociada al hechizo.\n    \n- `nameSpell` (string, requerido): El nombre del hechizo.\n    \n- `levelSpell` (number, requerido): El nivel del hechizo.\n    \n- `castTime` (string, requerido): El tiempo de lanzamiento del hechizo (`action`, `reaction` o `additional action`).\n    \n- `componentsSpell` (string, opcional): Los componentes del hechizo.\n    \n- `range` (number, requerido): El alcance del hechizo.\n    \n- `savingThrow` (string, opcional): El tipo de tirada de salvación (`strength`, `dexterity`, `constitution`, `intelligence`, `wisdom` o `charisma`).\n    \n- `dmgSpell` (string, opcional): El daño del hechizo.\n    \n- `descSpell` (string, requerido): La descripción del hechizo.\n    \n- `atHigherLevels` (string, requerido): Descripción de cómo el hechizo se comporta a niveles superiores.\n    \n\n#### Obtener Todos los Hechizos\n\nEndpoint: `GET /spell`\n\nRecupera todos los hechizos.\n\n#### Obtener Hechizo por ID\n\nEndpoint: `GET /spell/:id`\n\nRecupera un hechizo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del hechizo.\n    \n\n#### Actualizar Hechizo\n\nEndpoint: `PATCH /spell/:id`\n\nActualiza un hechizo existente por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del hechizo.\n    \n\n##### Cuerpo de la Solicitud (Opcional)\n\nLos campos que pueden actualizarse son los mismos que se utilizan para crear un hechizo.\n\n#### Eliminar Hechizo\n\nEndpoint: `DELETE /spell/:id`\n\nElimina un hechizo por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del hechizo."
+		},
+		{
+			"name": "Talents",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/talent/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"talent",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameTalent\":\"Cortante\",\r\n    \"descTalent\":\"Cortas mas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/talent",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"talent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descTalent\":\"Ahora MAS!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/talent/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"talent",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/talent/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"talent",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "#### Crear Talento\n\nEndpoint: `POST /talent`\n\nCrea un nuevo talento.\n\n##### Cuerpo de la Solicitud\n\n``` json\n{\n  \"nameTalent\": \"string\",\n  \"descTalent\": \"string\"\n}\n\n ```\n\n- `nameTalent` (string, requerido): El nombre del talento.\n    \n- `descTalent` (string, requerido): La descripción del talento.\n    \n\n#### Obtener Todos los Talentos\n\nEndpoint: `GET /talent`\n\nRecupera todos los talentos.\n\n#### Obtener Talento por ID\n\nEndpoint: `GET /talent/:id`\n\nRecupera un talento por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del talento.\n    \n\n#### Actualizar Talento\n\nEndpoint: `PATCH /talent/:id`\n\nActualiza un talento existente por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del talento.\n    \n\n##### Cuerpo de la Solicitud (Opcional)\n\nLos campos que pueden actualizarse son los mismos que se utilizan para crear un talento.\n\n#### Eliminar Talento\n\nEndpoint: `DELETE /talent/:id`\n\nElimina un talento por su ID.\n\n- `id` (number, parámetro de ruta, requerido): El ID del talento."
 		},
 		{
 			"name": "Seed",
