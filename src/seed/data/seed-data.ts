@@ -13,6 +13,11 @@ interface SeedEquipmentType {
   isWeapon?: boolean;
 }
 
+interface SeedTalent {
+  nameTalent: string;
+  descTalent: string;
+}
+
 interface SeedEquipment {
   nameEquipment: string;
   descEquipment: string;
@@ -37,6 +42,26 @@ interface SeedBackground {
   background: string;
 }
 
+interface SeedSpell {
+  nameSpell: string;
+  typeSpell: string;
+  castTime: 'action' | 'reaction' | 'additional action';
+  componentSpell?: string;
+  range: number;
+  savingThrow?:
+    | 'strength'
+    | 'dexterity'
+    | 'constitution'
+    | 'intelligence'
+    | 'wisdom'
+    | 'charisma';
+  dmgSpell?: string;
+  descSpell: string;
+  atHigherLevels: string;
+  idClass: number;
+  levelSpell: number;
+}
+
 interface SeedRace {
   race: string;
 }
@@ -55,6 +80,7 @@ interface Character {
   competencySkills: number[];
   equipment: number[];
   class: number;
+  talents: number[];
 }
 
 interface SeedArchetype {
@@ -67,6 +93,47 @@ interface SeedClass {
   descClass: string;
   lifeDice: number;
 }
+
+export const talentData: SeedTalent[] = [
+  {
+    nameTalent: 'lucky',
+    descTalent: 'You can make another roll on any ability check.',
+  },
+  {
+    nameTalent: 'Punga',
+    descTalent:
+      'You have the power of punga, you are unstoppable in melee. All attacks you make within 5 feet are critical.',
+  },
+  {
+    nameTalent: 'Fuckin Noob',
+    descTalent:
+      'You are a fucking noob, you have disadvantage in all your actions',
+  },
+];
+
+export const spellData: SeedSpell[] = [
+  {
+    nameSpell: 'Fire Bolt',
+    levelSpell: 1,
+    atHigherLevels: 'In level 5 2d10',
+    castTime: 'action',
+    descSpell: 'A fire but Bolt',
+    idClass: 1,
+    range: 300,
+    typeSpell: 'evocation',
+    dmgSpell: '2d10',
+  },
+  {
+    nameSpell: 'Guidence',
+    atHigherLevels: 'Nothing',
+    levelSpell: 2,
+    castTime: 'action',
+    descSpell: 'God Guide You',
+    idClass: 3,
+    range: 1,
+    typeSpell: 'miracle',
+  },
+];
 
 export const traitData: SeedTrait[] = [
   {
@@ -259,6 +326,7 @@ export const charactersData: Character[] = [
     competencySkills: [1, 4, 7, 9],
     equipment: [1],
     class: 1,
+    talents: [2],
   },
   {
     name: 'Lirelle',
@@ -275,6 +343,7 @@ export const charactersData: Character[] = [
     competencySkills: [3, 5, 8, 10],
     equipment: [2, 1],
     class: 2,
+    talents: [1, 3],
   },
   {
     name: 'Thorin',
@@ -291,5 +360,6 @@ export const charactersData: Character[] = [
     competencySkills: [2, 6, 7, 9],
     equipment: [1, 2, 3],
     class: 3,
+    talents: [3],
   },
 ];

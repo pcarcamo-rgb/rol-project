@@ -8,6 +8,8 @@ import { AbilitiesModule } from 'src/abilities/abilities.module';
 import { EquipmentModule } from 'src/equipment/equipment.module';
 import { TalentModule } from 'src/talent/talent.module';
 import { ClassModule } from 'src/class/class.module';
+import { RaceModule } from 'src/race/race.module';
+import { BackgroundModule } from 'src/background/background.module';
 
 @Module({
   controllers: [CharacterController],
@@ -18,6 +20,8 @@ import { ClassModule } from 'src/class/class.module';
     EquipmentModule,
     TalentModule,
     ClassModule,
+    RaceModule,
+    BackgroundModule,
   ],
   exports: [CharacterService],
 })

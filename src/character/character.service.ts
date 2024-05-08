@@ -16,6 +16,8 @@ import { Equipment } from 'src/equipment/entities/equipment.entity';
 import { Talent } from 'src/talent/entities/talent.entity';
 import { TalentService } from 'src/talent/talent.service';
 import { ClassService } from 'src/class/class.service';
+import { RaceService } from 'src/race/race.service';
+import { BackgroundService } from 'src/background/background.service';
 
 @Injectable()
 export class CharacterService {
@@ -29,32 +31,55 @@ export class CharacterService {
     private readonly abilityService: AbilitiesService,
     private readonly talentService: TalentService,
     private readonly classSerive: ClassService,
+    private readonly raceService: RaceService,
+    private readonly backgroundService: BackgroundService,
   ) {}
 
   async create(createCharacterDto: CreateCharacterDto) {
     try {
-      const { competencySkills, ...characterToCreate } = createCharacterDto;
-
-      const character = this.characterRepository.create(characterToCreate);
-
-      character.class = await this.classSerive.findOne(
-        createCharacterDto.IdClass,
-        true,
-      );
+      let foundTalents: Talent[] = [];
       if (createCharacterDto.talents) {
-        const foundTalents: Talent[] = [];
-
-        for (const talent of createCharacterDto.talents) {
-          foundTalents.push(await this.talentService.findOne(+talent));
-        }
-        character.talents = foundTalents;
+        foundTalents = await Promise.all(
+          createCharacterDto.talents.map((talentId) =>
+            this.talentService.findOne(talentId),
+          ),
+        );
       }
 
+      let foundEquipments: Equipment[] = [];
+      if (createCharacterDto.equipment) {
+        foundEquipments = await Promise.all(
+          createCharacterDto.equipment.map((equipmentId) =>
+            this.equipmentService.findOne(equipmentId),
+          ),
+        );
+      }
+
+      const foundRace = await this.raceService.findOne(createCharacterDto.race);
+
+      const foundBackground = await this.backgroundService.findOne(
+        createCharacterDto.background,
+      );
+      const foundClass = await this.classSerive.findOne(
+        createCharacterDto.idClass,
+      );
+
+      // Crear la instancia de personaje
+      const character = this.characterRepository.create({
+        ...createCharacterDto,
+        talent: foundTalents,
+        equipment: foundEquipments,
+        race: foundRace,
+        background: foundBackground,
+        class: foundClass,
+      });
+
+      // Guardar el personaje en la base de datos
       await this.characterRepository.save(character);
 
       const insertCharAbilities = [];
 
-      for (const abilityId of competencySkills) {
+      for (const abilityId of createCharacterDto.competencySkills) {
         const searchAbility = await this.abilityService.findOne(abilityId);
         if (searchAbility) {
           const charAbility = new CharacterAbilities();
@@ -86,7 +111,7 @@ export class CharacterService {
         background: true,
         class: true,
         equipment: true,
-        talents: true,
+        talent: true,
       },
     });
     if (!character)
@@ -134,7 +159,7 @@ export class CharacterService {
         foundTalents.push(await this.talentService.findOne(+talent));
       }
       Object.assign(character, updateCharacterDto);
-      character.talents = foundTalents;
+      character.talent = foundTalents;
     }
 
     if (competencySkills) {

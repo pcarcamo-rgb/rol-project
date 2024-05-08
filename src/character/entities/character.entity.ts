@@ -90,17 +90,17 @@ export class Character {
   @JoinColumn({ name: 'IdClass' })
   class: Class;
 
-  @ManyToMany(() => Talent, (talent) => talent.character)
+  @ManyToMany(() => Talent, (talent) => talent.character, {
+    cascade: true,
+    nullable: true,
+    onUpdate: 'CASCADE',
+  })
   @JoinTable({
     name: 'character_talent',
-    joinColumn: {
-      name: 'idCharacter',
-    },
-    inverseJoinColumn: {
-      name: 'idTalent',
-    },
+    joinColumn: { name: 'IdCharacter' },
+    inverseJoinColumn: { name: 'IdTalent' },
   })
-  talents: Talent[];
+  talent: Talent[];
 
   @ManyToOne(() => Background)
   @JoinColumn({ name: 'idBackground' })

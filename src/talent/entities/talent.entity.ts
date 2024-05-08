@@ -6,8 +6,8 @@ export class Talent {
   @PrimaryGeneratedColumn()
   idTalent: number;
 
-  @ManyToMany(() => Character, (character) => character.talents)
-  character: Character;
+  @ManyToMany(() => Character, (character) => character.equipment)
+  character: Character[];
 
   @Column('varchar', {
     unique: true,

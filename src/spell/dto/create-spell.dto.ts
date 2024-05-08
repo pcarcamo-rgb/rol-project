@@ -1,23 +1,21 @@
-import {
-  IsNumber,
-  IsOptional,
-  IsString,
-  Min,
-  MinLength,
-} from 'class-validator';
-import { Class } from 'src/class/entities/class.entity';
+import { IsPositive, MinLength } from 'class-validator';
+import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
 
 export class CreateSpellDto {
   @IsNumber()
   @Min(1)
-  idClass: Class;
+  idClass: number;
 
   @IsString()
   @MinLength(1)
   nameSpell: string;
 
+  @IsString()
+  @MinLength(1)
+  typeSpell: string;
+
   @IsNumber()
-  @Min(1)
+  @IsPositive()
   levelSpell: number;
 
   @IsString()

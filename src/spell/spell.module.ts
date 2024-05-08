@@ -9,5 +9,6 @@ import { ClassModule } from 'src/class/class.module';
   controllers: [SpellController],
   providers: [SpellService],
   imports: [TypeOrmModule.forFeature([Spell]), ClassModule],
+  exports: [SpellService],
 })
 export class SpellModule {}

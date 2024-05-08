@@ -26,15 +26,20 @@ export class EquipmentService {
 
   async create(createEquipmentDto: CreateEquipmentDto) {
     try {
-      const { tags, ...equipment } = createEquipmentDto;
+      const { IDtags, ...equipment } = createEquipmentDto;
 
       const defTags = await this.tagsRepository.findBy({
-        IdTagEquipment: In(tags),
+        IdTagEquipment: In(IDtags),
       });
+
+      const typeEquipFound = await this.typeEquipmentService.findOneType(
+        equipment.typeEquipment,
+      );
 
       const newEquipment = this.equipmentRepository.create({
         ...equipment,
         tags: defTags,
+        typeEquipment: typeEquipFound,
       });
 
       return await this.equipmentRepository.save(newEquipment);
@@ -67,11 +72,11 @@ export class EquipmentService {
   async update(id: number, updateEquipmentDto: UpdateEquipmentDto) {
     const equipmentToUpdate = await this.findOne(id);
 
-    const { tags, ...equipment } = updateEquipmentDto;
+    const { IDtags, ...equipment } = updateEquipmentDto;
 
-    if (tags) {
+    if (IDtags) {
       const defTags = await this.tagsRepository.findBy({
-        IdTagEquipment: In(tags),
+        IdTagEquipment: In(IDtags),
       });
       Object.assign(equipmentToUpdate, { tags: defTags, ...equipment });
     } else {

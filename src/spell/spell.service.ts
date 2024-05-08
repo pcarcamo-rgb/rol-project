@@ -28,7 +28,6 @@ export class SpellService {
     try {
       return await this.spellRepository.save(newSpell);
     } catch (error) {
-      console.log(error);
       throw new InternalServerErrorException(error);
     }
   }

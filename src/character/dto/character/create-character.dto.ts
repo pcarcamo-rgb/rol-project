@@ -8,23 +8,18 @@ import {
   MinLength,
 } from 'class-validator';
 
-import { Background } from 'src/background/entities/background.entity';
-import { Equipment } from 'src/equipment/entities/equipment.entity';
-import { Race } from 'src/race/entities/race.entity';
-import { Talent } from 'src/talent/entities/talent.entity';
-
 export class CreateCharacterDto {
   @IsNumber()
   @Min(1)
-  background: Background;
+  background: number;
 
   @IsNumber()
   @Min(1)
-  IdClass: number;
+  idClass: number;
 
   @IsNumber()
   @Min(1)
-  race: Race;
+  race: number;
 
   @IsString()
   @MinLength(1)
@@ -64,9 +59,9 @@ export class CreateCharacterDto {
 
   @IsArray()
   @IsOptional()
-  equipment?: Equipment[];
+  equipment?: number[];
 
   @IsArray()
   @IsOptional()
-  talents?: Talent[];
+  talents?: number[];
 }

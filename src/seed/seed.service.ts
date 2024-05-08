@@ -11,14 +11,14 @@ import {
   classData,
   equipmentData,
   racesData,
+  spellData,
+  talentData,
   traitData,
   typeEquipmentData,
 } from './data/seed-data';
-import { Background } from 'src/background/entities/background.entity';
-import { Race } from 'src/race/entities/race.entity';
+
 import { TagsService } from 'src/tags/tags.service';
 import { TypeEquipmentService } from 'src/equipment/equipment-type/type-equipment.service';
-import { EquipmentService } from 'src/equipment/equipment.service';
 import { tagsData } from './data/seed-data';
 
 import { Tags } from 'src/tags/entities/tag.entity';
@@ -28,23 +28,8 @@ import { Equipment } from 'src/equipment/entities/equipment.entity';
 import { ClassService } from 'src/class/class.service';
 import { ArchetypeService } from 'src/archetype/archetype.service';
 import { TraitService } from 'src/trait/trait.service';
-
-interface CreateCharacterDto {
-  name: string;
-  level: number;
-  strength: number;
-  dexterity: number;
-  constitution: number;
-  intelligence: number;
-  wisdom: number;
-  charisma: number;
-  proficiencyBonus: number;
-  background: Background; // Cambia el tipo de background y race a sus respectivas entidades
-  race: Race;
-  competencySkills: number[];
-  equipment: Equipment[];
-  IdClass: number;
-}
+import { SpellService } from 'src/spell/spell.service';
+import { TalentService } from 'src/talent/talent.service';
 
 @Injectable()
 export class SeedService {
@@ -55,10 +40,11 @@ export class SeedService {
     private readonly characterService: CharacterService,
     private readonly tagsService: TagsService,
     private readonly typeEquipmentService: TypeEquipmentService,
-    private readonly equipmentService: EquipmentService,
     private readonly classService: ClassService,
     private readonly archetypeService: ArchetypeService,
     private readonly traitService: TraitService,
+    private readonly spellService: SpellService,
+    private readonly talenService: TalentService,
 
     @InjectRepository(Equipment)
     private readonly equipmentRepository: Repository<Equipment>,
@@ -75,6 +61,8 @@ export class SeedService {
       await this.insertClasses();
       await this.insertArchetypes();
       await this.insertTraits();
+      await this.insertSpells();
+      await this.insertTalents();
 
       await this.insertCharacters();
       return 'Seed Executed.';
@@ -84,6 +72,17 @@ export class SeedService {
     }
   }
 
+  private async insertSpells() {
+    for (const spell of spellData) {
+      await this.spellService.create(spell);
+    }
+  }
+
+  private async insertTalents() {
+    for (const talent of talentData) {
+      await this.talenService.create(talent);
+    }
+  }
   private async insertTraits() {
     for (const trait of traitData) {
       await this.traitService.create(trait);
@@ -158,17 +157,7 @@ export class SeedService {
 
   private async insertCharacters() {
     const insertPromises = charactersData.map(async (character) => {
-      const background = await this.backgroundService.findOne(
-        character.background,
-      );
-      const race = await this.raceService.findOne(character.race);
-
-      const equipmentFound: Equipment[] = [];
-      for (const equip of character.equipment) {
-        equipmentFound.push(await this.equipmentService.findOne(equip));
-      }
-
-      const createCharacterDto: CreateCharacterDto = {
+      const createCharacterDto = {
         name: character.name,
         level: character.level,
         strength: character.strength,
@@ -178,11 +167,12 @@ export class SeedService {
         wisdom: character.wisdom,
         charisma: character.charisma,
         proficiencyBonus: character.proficiencyBonus,
-        background: background,
-        race: race,
+        background: character.background,
+        race: character.race,
         competencySkills: character.competencySkills,
-        equipment: equipmentFound,
-        IdClass: character.class,
+        equipment: character.equipment,
+        idClass: character.class,
+        talents: character.talents,
       };
 
       return this.characterService.create(createCharacterDto);

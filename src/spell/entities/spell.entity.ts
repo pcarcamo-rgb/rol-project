@@ -21,6 +21,9 @@ export class Spell {
   })
   nameSpell: string;
 
+  @Column('varchar', {})
+  typeSpell: string;
+
   @Column('int')
   levelSpell: number;
 

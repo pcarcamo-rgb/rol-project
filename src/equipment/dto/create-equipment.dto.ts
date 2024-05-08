@@ -6,8 +6,6 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
-import { Tags } from 'src/tags/entities/tag.entity';
-import { TypeEquipment } from '../entities/equipment-type.entity';
 
 export class CreateEquipmentDto {
   @IsString()
@@ -27,10 +25,10 @@ export class CreateEquipmentDto {
   armorEquipment: number;
 
   @IsNumber()
-  typeEquipment: TypeEquipment;
+  typeEquipment: number;
 
   @IsArray()
-  tags: Tags[];
+  IDtags: number[];
 
   @IsString()
   @IsOptional()

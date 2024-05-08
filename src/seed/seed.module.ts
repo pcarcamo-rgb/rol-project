@@ -12,6 +12,8 @@ import { Equipment } from 'src/equipment/entities/equipment.entity';
 import { ClassModule } from 'src/class/class.module';
 import { ArchetypeModule } from 'src/archetype/archetype.module';
 import { TraitModule } from 'src/trait/trait.module';
+import { SpellModule } from 'src/spell/spell.module';
+import { TalentModule } from 'src/talent/talent.module';
 
 @Module({
   controllers: [SeedController],
@@ -27,6 +29,8 @@ import { TraitModule } from 'src/trait/trait.module';
     ClassModule,
     ArchetypeModule,
     TraitModule,
+    SpellModule,
+    TalentModule,
   ],
 })
 export class SeedModule {}
