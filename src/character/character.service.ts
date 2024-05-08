@@ -137,7 +137,16 @@ export class CharacterService {
 
   async findAll() {
     try {
-      return await this.characterRepository.find();
+      return await this.characterRepository.find({
+        relations: {
+          abilities: true,
+          background: true,
+          race: true,
+          class: true,
+          archetype: true,
+          equipment: true,
+        },
+      });
     } catch (error) {
       this.handleExceptions(error);
     }
@@ -149,8 +158,12 @@ export class CharacterService {
         idCharacter: id,
       },
       relations: {
+        abilities: true,
+        background: true,
+        race: true,
         class: true,
         archetype: true,
+        equipment: true,
       },
     });
     if (!character)
