@@ -1,3 +1,4 @@
+import { Character } from 'src/character/entities/character.entity';
 import { Class } from 'src/class/entities/class.entity';
 import { Trait } from 'src/trait/entities/trait.entity';
 import {
@@ -23,6 +24,9 @@ export class Archetype {
   @ManyToOne(() => Class, (clas) => clas.IdClass)
   @JoinColumn({ name: 'IdClass' })
   class: Class;
+
+  @OneToMany(() => Character, (character) => character.archetype)
+  character: Character;
 
   @OneToMany(() => Trait, (trait) => trait.archetype)
   trait: Trait[];

@@ -10,6 +10,7 @@ import { TalentModule } from 'src/talent/talent.module';
 import { ClassModule } from 'src/class/class.module';
 import { RaceModule } from 'src/race/race.module';
 import { BackgroundModule } from 'src/background/background.module';
+import { ArchetypeModule } from 'src/archetype/archetype.module';
 
 @Module({
   controllers: [CharacterController],
@@ -22,6 +23,7 @@ import { BackgroundModule } from 'src/background/background.module';
     ClassModule,
     RaceModule,
     BackgroundModule,
+    ArchetypeModule,
   ],
   exports: [CharacterService],
 })

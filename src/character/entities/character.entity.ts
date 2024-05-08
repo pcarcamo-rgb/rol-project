@@ -14,6 +14,7 @@ import { CharacterAbilities } from './character-abilities.entity';
 import { Equipment } from 'src/equipment/entities/equipment.entity';
 import { Class } from 'src/class/entities/class.entity';
 import { Talent } from 'src/talent/entities/talent.entity';
+import { Archetype } from 'src/archetype/entities/archetype.entity';
 
 @Entity()
 export class Character {
@@ -89,6 +90,12 @@ export class Character {
   @ManyToOne(() => Class)
   @JoinColumn({ name: 'IdClass' })
   class: Class;
+
+  @ManyToOne(() => Archetype, (archetype) => archetype.character, {
+    nullable: true,
+  })
+  @JoinColumn({ name: 'idArchetype' })
+  archetype: Archetype;
 
   @ManyToMany(() => Talent, (talent) => talent.character, {
     cascade: true,

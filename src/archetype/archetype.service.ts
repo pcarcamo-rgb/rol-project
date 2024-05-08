@@ -49,6 +49,7 @@ export class ArchetypeService {
         IdArchetype: id,
       },
       relations: {
+        class: true,
         trait: true,
       },
     });

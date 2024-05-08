@@ -18,6 +18,7 @@ import { TalentService } from 'src/talent/talent.service';
 import { ClassService } from 'src/class/class.service';
 import { RaceService } from 'src/race/race.service';
 import { BackgroundService } from 'src/background/background.service';
+import { ArchetypeService } from 'src/archetype/archetype.service';
 
 @Injectable()
 export class CharacterService {
@@ -33,6 +34,7 @@ export class CharacterService {
     private readonly classSerive: ClassService,
     private readonly raceService: RaceService,
     private readonly backgroundService: BackgroundService,
+    private readonly archetypeService: ArchetypeService,
   ) {}
 
   async create(createCharacterDto: CreateCharacterDto) {
@@ -46,6 +48,7 @@ export class CharacterService {
         );
       }
 
+      // Obtener instancias de equipamiento si existen
       let foundEquipments: Equipment[] = [];
       if (createCharacterDto.equipment) {
         foundEquipments = await Promise.all(
@@ -55,14 +58,22 @@ export class CharacterService {
         );
       }
 
+      // Obtener instancias de raza y fondo
       const foundRace = await this.raceService.findOne(createCharacterDto.race);
-
       const foundBackground = await this.backgroundService.findOne(
         createCharacterDto.background,
       );
       const foundClass = await this.classSerive.findOne(
         createCharacterDto.idClass,
       );
+
+      const foundArchetype = await this.archetypeService.findOne(
+        createCharacterDto.idArchetype,
+      );
+
+      if (!(foundArchetype.class.IdClass === foundClass.IdClass)) {
+        throw new BadRequestException(`Archetype not correct for the class.`);
+      }
 
       // Crear la instancia de personaje
       const character = this.characterRepository.create({
@@ -72,9 +83,11 @@ export class CharacterService {
         race: foundRace,
         background: foundBackground,
         class: foundClass,
+        archetype: foundArchetype,
       });
 
-      // Guardar el personaje en la base de datos
+      // Asignar la clase
+
       await this.characterRepository.save(character);
 
       const insertCharAbilities = [];
@@ -112,6 +125,8 @@ export class CharacterService {
         class: true,
         equipment: true,
         talent: true,
+        archetype: true,
+        race: true,
       },
     });
     if (!character)
@@ -129,8 +144,14 @@ export class CharacterService {
   }
 
   async findOne(id: number) {
-    const character = await this.characterRepository.findOneBy({
-      idCharacter: id,
+    const character = await this.characterRepository.findOne({
+      where: {
+        idCharacter: id,
+      },
+      relations: {
+        class: true,
+        archetype: true,
+      },
     });
     if (!character)
       throw new NotFoundException(`Character with id ${id} not found.`);
@@ -141,8 +162,15 @@ export class CharacterService {
   async update(id: number, updateCharacterDto: UpdateCharacterDto) {
     const character = await this.findOne(id);
 
-    const { equipment, competencySkills, talents } = updateCharacterDto;
+    const {
+      equipment,
+      competencySkills,
+      talents,
+      idArchetype,
+      ...restToUpdate
+    } = updateCharacterDto;
 
+    console.log(restToUpdate);
     if (equipment) {
       const foundEquipment: Equipment[] = [];
       for (const equip of equipment) {
@@ -150,6 +178,15 @@ export class CharacterService {
       }
       Object.assign(character, updateCharacterDto);
       character.equipment = foundEquipment;
+    }
+
+    if (idArchetype) {
+      const foundArchetype = await this.archetypeService.findOne(idArchetype);
+
+      if (!(foundArchetype.class.IdClass === character.class.IdClass)) {
+        throw new BadRequestException(`Archetype not correct for the class.`);
+      }
+      character.archetype = foundArchetype;
     }
 
     if (talents) {
@@ -177,6 +214,7 @@ export class CharacterService {
         await this.charAbilities.save(insertCharAbilities);
       }
     }
+    Object.assign(character, restToUpdate);
     return await this.characterRepository.save(character);
   }
 
@@ -190,11 +228,6 @@ export class CharacterService {
   }
 
   handleExceptions(error: any): never {
-    if (error.errno === 1452)
-      if (error.sqlMessage.toLowerCase().includes('idbackground'))
-        throw new BadRequestException(`Background id Not Exist.`);
-    if (error.sqlMessage.toLowerCase().includes('idrace'))
-      throw new BadRequestException(`Race id Not Exist.`);
     console.log(error);
     throw new InternalServerErrorException('Unexpected Error, check console.');
   }

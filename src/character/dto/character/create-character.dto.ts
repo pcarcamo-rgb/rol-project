@@ -19,6 +19,11 @@ export class CreateCharacterDto {
 
   @IsNumber()
   @Min(1)
+  @IsOptional()
+  idArchetype?: number;
+
+  @IsNumber()
+  @Min(1)
   race: number;
 
   @IsString()
