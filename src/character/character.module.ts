@@ -11,10 +11,12 @@ import { ClassModule } from 'src/class/class.module';
 import { RaceModule } from 'src/race/race.module';
 import { BackgroundModule } from 'src/background/background.module';
 import { ArchetypeModule } from 'src/archetype/archetype.module';
+import { AuthModule } from 'src/auth/auth.module';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   controllers: [CharacterController],
-  providers: [CharacterService],
+  providers: [CharacterService, JwtService],
   imports: [
     TypeOrmModule.forFeature([Character, CharacterAbilities]),
     AbilitiesModule,
@@ -24,6 +26,7 @@ import { ArchetypeModule } from 'src/archetype/archetype.module';
     RaceModule,
     BackgroundModule,
     ArchetypeModule,
+    AuthModule,
   ],
   exports: [CharacterService],
 })

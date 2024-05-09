@@ -2,7 +2,7 @@
 /dist
 /node_modules
 /build
-
+/interfaces\validRoles.enum.ts
 # Logs
 logs
 *.log

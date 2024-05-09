@@ -13,10 +13,13 @@ import { TraitModule } from './trait/trait.module';
 import { ArchetypeModule } from './archetype/archetype.module';
 import { SpellModule } from './spell/spell.module';
 import { TalentModule } from './talent/talent.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
@@ -39,6 +42,7 @@ import { TalentModule } from './talent/talent.module';
     ArchetypeModule,
     SpellModule,
     TalentModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
