@@ -34,6 +34,7 @@ export class CharacterController {
     return this.characterService.findAll();
   }
 
+  @Auth(ValidRoles.USER)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.characterService.findOne(+id);

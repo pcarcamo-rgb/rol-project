@@ -14,6 +14,9 @@ import { ArchetypeModule } from './archetype/archetype.module';
 import { SpellModule } from './spell/spell.module';
 import { TalentModule } from './talent/talent.module';
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -45,6 +48,12 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+    JwtService,
+  ],
 })
 export class AppModule {}

@@ -10,13 +10,20 @@ import {
 import { BackgroundService } from './background.service';
 import { CreateBackgroundDto } from './dto/create-background.dto';
 import { UpdateBackgroundDto } from './dto/update-background.dto';
+import { ValidRoles } from 'src/interfaces/validRoles.enum';
+import { Auth } from 'src/auth/decorators/auth.decorator';
 
 @Controller('background')
 export class BackgroundController {
   constructor(private readonly backgroundService: BackgroundService) {}
 
+  @Auth(ValidRoles.ADMIN)
   @Post()
-  create(@Body() createBackgroundDto: CreateBackgroundDto) {
+  create(
+    @Body() createBackgroundDto: CreateBackgroundDto,
+  ): Promise<
+    import('c:/rol/src/background/entities/background.entity').Background
+  > {
     return this.backgroundService.create(createBackgroundDto);
   }
 
