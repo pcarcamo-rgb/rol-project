@@ -24,6 +24,11 @@ import { JwtService } from '@nestjs/jwt';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
+      ssl: process.env.STAGE === 'prod',
+      extra: {
+        ssl:
+          process.env.STAGE === 'prod' ? { rejectUnauthorized: false } : null,
+      },
       type: 'mysql',
       host: process.env.DB_HOST,
       port: +process.env.DB_PORT,
