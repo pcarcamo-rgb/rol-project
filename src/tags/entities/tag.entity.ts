@@ -1,4 +1,4 @@
-import { Equipment } from 'src/equipment/entities/equipment.entity';
+import { Equipment } from '../../equipment/entities/equipment.entity';
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

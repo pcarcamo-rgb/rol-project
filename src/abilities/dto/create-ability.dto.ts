@@ -1,5 +1,5 @@
 import { IsEnum, IsString, MinLength } from 'class-validator';
-import { Caracteristics } from 'src/interfaces/caracteristics.enum';
+import { Caracteristics } from '../../interfaces/caracteristics.enum';
 
 export class CreateAbilityDto {
   @IsString()

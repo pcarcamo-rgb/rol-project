@@ -8,8 +8,8 @@ import { UpdateArchetypeDto } from './dto/update-archetype.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Archetype } from './entities/archetype.entity';
 import { Repository } from 'typeorm';
-import { ClassService } from 'src/class/class.service';
-import { Class } from 'src/class/entities/class.entity';
+import { ClassService } from '../class/class.service';
+import { Class } from '../class/entities/class.entity';
 
 @Injectable()
 export class ArchetypeService {

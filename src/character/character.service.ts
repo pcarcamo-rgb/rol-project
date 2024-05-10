@@ -10,16 +10,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Character } from './entities/character.entity';
 import { Repository } from 'typeorm';
 import { CharacterAbilities } from './entities/character-abilities.entity';
-import { AbilitiesService } from 'src/abilities/abilities.service';
-import { EquipmentService } from 'src/equipment/equipment.service';
-import { Equipment } from 'src/equipment/entities/equipment.entity';
-import { Talent } from 'src/talent/entities/talent.entity';
-import { TalentService } from 'src/talent/talent.service';
-import { ClassService } from 'src/class/class.service';
-import { RaceService } from 'src/race/race.service';
-import { BackgroundService } from 'src/background/background.service';
-import { ArchetypeService } from 'src/archetype/archetype.service';
-import { User } from 'src/auth/entities/user.entity';
+import { AbilitiesService } from '../abilities/abilities.service';
+import { EquipmentService } from '../equipment/equipment.service';
+import { Equipment } from '../equipment/entities/equipment.entity';
+import { Talent } from '../talent/entities/talent.entity';
+import { TalentService } from '../talent/talent.service';
+import { ClassService } from '../class/class.service';
+import { RaceService } from '../race/race.service';
+import { BackgroundService } from '../background/background.service';
+import { ArchetypeService } from '../archetype/archetype.service';
+import { User } from '../auth/entities/user.entity';
 
 @Injectable()
 export class CharacterService {

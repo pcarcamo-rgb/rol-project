@@ -10,8 +10,8 @@ import {
 import { BackgroundService } from './background.service';
 import { CreateBackgroundDto } from './dto/create-background.dto';
 import { UpdateBackgroundDto } from './dto/update-background.dto';
-import { ValidRoles } from 'src/interfaces/validRoles.enum';
-import { Auth } from 'src/auth/decorators/auth.decorator';
+import { ValidRoles } from '../interfaces/validRoles.enum';
+import { Auth } from '../auth/decorators/auth.decorator';
 
 @Controller('background')
 export class BackgroundController {

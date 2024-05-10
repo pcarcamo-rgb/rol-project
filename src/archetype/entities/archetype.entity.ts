@@ -1,6 +1,6 @@
-import { Character } from 'src/character/entities/character.entity';
-import { Class } from 'src/class/entities/class.entity';
-import { Trait } from 'src/trait/entities/trait.entity';
+import { Character } from '../../character/entities/character.entity';
+import { Class } from '../../class/entities/class.entity';
+import { Trait } from '../../trait/entities/trait.entity';
 import {
   Column,
   Entity,

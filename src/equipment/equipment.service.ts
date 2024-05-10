@@ -10,7 +10,7 @@ import { Equipment } from './entities/equipment.entity';
 import { In, Repository } from 'typeorm';
 
 import { TypeEquipmentService } from './equipment-type/type-equipment.service';
-import { Tags } from 'src/tags/entities/tag.entity';
+import { Tags } from '../tags/entities/tag.entity';
 
 @Injectable()
 export class EquipmentService {

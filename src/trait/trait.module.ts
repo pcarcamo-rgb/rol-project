@@ -3,8 +3,8 @@ import { TraitService } from './trait.service';
 import { TraitController } from './trait.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Trait } from './entities/trait.entity';
-import { ClassModule } from 'src/class/class.module';
-import { ArchetypeModule } from 'src/archetype/archetype.module';
+import { ClassModule } from '../class/class.module';
+import { ArchetypeModule } from '../archetype/archetype.module';
 
 @Module({
   controllers: [TraitController],

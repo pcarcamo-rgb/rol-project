@@ -11,13 +11,13 @@ import {
 import { CharacterService } from './character.service';
 import { CreateCharacterDto } from './dto/character/create-character.dto';
 import { UpdateCharacterDto } from './dto/character/update-character.dto';
-import { AuthGuard } from 'src/auth/guards/auth.guard';
-import { UserRoleGuard } from 'src/auth/guards/user-role.guard';
-import { Roles } from 'src/auth/decorators/roles.decorator';
-import { ValidRoles } from 'src/interfaces/validRoles.enum';
-import { Auth } from 'src/auth/decorators/auth.decorator';
-import { GetUser } from 'src/common/get-user/get-user.decorator';
-import { User } from 'src/auth/entities/user.entity';
+import { AuthGuard } from '../auth/guards/auth.guard';
+import { UserRoleGuard } from '../auth/guards/user-role.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { ValidRoles } from '../interfaces/validRoles.enum';
+import { Auth } from '../auth/decorators/auth.decorator';
+import { GetUser } from '../common/get-user/get-user.decorator';
+import { User } from '../auth/entities/user.entity';
 
 @Controller('character')
 export class CharacterController {

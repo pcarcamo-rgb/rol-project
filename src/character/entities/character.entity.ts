@@ -11,11 +11,11 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CharacterAbilities } from './character-abilities.entity';
-import { Equipment } from 'src/equipment/entities/equipment.entity';
-import { Class } from 'src/class/entities/class.entity';
-import { Talent } from 'src/talent/entities/talent.entity';
-import { Archetype } from 'src/archetype/entities/archetype.entity';
-import { User } from 'src/auth/entities/user.entity';
+import { Equipment } from '../../equipment/entities/equipment.entity';
+import { Class } from '../../class/entities/class.entity';
+import { Talent } from '../../talent/entities/talent.entity';
+import { Archetype } from '../../archetype/entities/archetype.entity';
+import { User } from '../../auth/entities/user.entity';
 
 @Entity()
 export class Character {

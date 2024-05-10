@@ -1,4 +1,4 @@
-import { Character } from 'src/character/entities/character.entity';
+import { Character } from '../../character/entities/character.entity';
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

@@ -1,4 +1,4 @@
-import { CharacterAbilities } from 'src/character/entities/character-abilities.entity';
+import { CharacterAbilities } from '../../character/entities/character-abilities.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

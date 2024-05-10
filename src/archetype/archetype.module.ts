@@ -3,7 +3,7 @@ import { ArchetypeService } from './archetype.service';
 import { ArchetypeController } from './archetype.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Archetype } from './entities/archetype.entity';
-import { ClassModule } from 'src/class/class.module';
+import { ClassModule } from '../class/class.module';
 
 @Module({
   controllers: [ArchetypeController],

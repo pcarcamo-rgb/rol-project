@@ -1,5 +1,5 @@
-import { Archetype } from 'src/archetype/entities/archetype.entity';
-import { Class } from 'src/class/entities/class.entity';
+import { Archetype } from '../../archetype/entities/archetype.entity';
+import { Class } from '../../class/entities/class.entity';
 import {
   Column,
   Entity,

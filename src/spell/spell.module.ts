@@ -3,7 +3,7 @@ import { SpellService } from './spell.service';
 import { SpellController } from './spell.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Spell } from './entities/spell.entity';
-import { ClassModule } from 'src/class/class.module';
+import { ClassModule } from '../class/class.module';
 
 @Module({
   controllers: [SpellController],

@@ -1,4 +1,4 @@
-import { Class } from 'src/class/entities/class.entity';
+import { Class } from '../../class/entities/class.entity';
 import {
   Column,
   Entity,

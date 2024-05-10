@@ -1,7 +1,7 @@
-import { Character } from 'src/character/entities/character.entity';
+import { Character } from '../../character/entities/character.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'background' })
+@Entity()
 export class Background {
   @PrimaryGeneratedColumn()
   IdBackground: number;

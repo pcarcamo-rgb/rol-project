@@ -8,8 +8,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { TypeEquipment } from './equipment-type.entity';
-import { Tags } from 'src/tags/entities/tag.entity';
-import { Character } from 'src/character/entities/character.entity';
+import { Tags } from '../../tags/entities/tag.entity';
+import { Character } from '../../character/entities/character.entity';
 
 @Entity()
 export class Equipment {

@@ -4,14 +4,14 @@ import { CharacterController } from './character.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Character } from './entities/character.entity';
 import { CharacterAbilities } from './entities/character-abilities.entity';
-import { AbilitiesModule } from 'src/abilities/abilities.module';
-import { EquipmentModule } from 'src/equipment/equipment.module';
-import { TalentModule } from 'src/talent/talent.module';
-import { ClassModule } from 'src/class/class.module';
-import { RaceModule } from 'src/race/race.module';
-import { BackgroundModule } from 'src/background/background.module';
-import { ArchetypeModule } from 'src/archetype/archetype.module';
-import { AuthModule } from 'src/auth/auth.module';
+import { AbilitiesModule } from '../abilities/abilities.module';
+import { EquipmentModule } from '../equipment/equipment.module';
+import { TalentModule } from '../talent/talent.module';
+import { ClassModule } from '../class/class.module';
+import { RaceModule } from '../race/race.module';
+import { BackgroundModule } from '../background/background.module';
+import { ArchetypeModule } from '../archetype/archetype.module';
+import { AuthModule } from '../auth/auth.module';
 import { JwtService } from '@nestjs/jwt';
 
 @Module({

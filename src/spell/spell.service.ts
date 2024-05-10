@@ -7,7 +7,7 @@ import { CreateSpellDto } from './dto/create-spell.dto';
 import { UpdateSpellDto } from './dto/update-spell.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Spell } from './entities/spell.entity';
-import { ClassService } from 'src/class/class.service';
+import { ClassService } from '../class/class.service';
 import { Repository } from 'typeorm';
 
 @Injectable()

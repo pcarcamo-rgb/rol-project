@@ -1,8 +1,8 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { AbilitiesService } from 'src/abilities/abilities.service';
-import { BackgroundService } from 'src/background/background.service';
-import { CharacterService } from 'src/character/character.service';
-import { RaceService } from 'src/race/race.service';
+import { AbilitiesService } from '../abilities/abilities.service';
+import { BackgroundService } from '../background/background.service';
+import { CharacterService } from '../character/character.service';
+import { RaceService } from '../race/race.service';
 import {
   abilitiesData,
   archetypeData,
@@ -19,20 +19,20 @@ import {
   userData,
 } from './data/seed-data';
 
-import { TagsService } from 'src/tags/tags.service';
-import { TypeEquipmentService } from 'src/equipment/equipment-type/type-equipment.service';
+import { TagsService } from '../tags/tags.service';
+import { TypeEquipmentService } from '../equipment/equipment-type/type-equipment.service';
 import { tagsData } from './data/seed-data';
 
-import { Tags } from 'src/tags/entities/tag.entity';
+import { Tags } from '../tags/entities/tag.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Equipment } from 'src/equipment/entities/equipment.entity';
-import { ClassService } from 'src/class/class.service';
-import { ArchetypeService } from 'src/archetype/archetype.service';
-import { TraitService } from 'src/trait/trait.service';
-import { SpellService } from 'src/spell/spell.service';
-import { TalentService } from 'src/talent/talent.service';
-import { AuthService } from 'src/auth/auth.service';
+import { Equipment } from '../equipment/entities/equipment.entity';
+import { ClassService } from '../class/class.service';
+import { ArchetypeService } from '../archetype/archetype.service';
+import { TraitService } from '../trait/trait.service';
+import { SpellService } from '../spell/spell.service';
+import { TalentService } from '../talent/talent.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class SeedService {

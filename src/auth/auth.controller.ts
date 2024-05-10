@@ -6,7 +6,7 @@ import { SigInDto } from './dto/sigIn-auth.dto';
 import { CreateRolDto } from './dto/create-rol.dto';
 import { Public } from './decorators/is-public.decorator';
 import { Auth } from './decorators/auth.decorator';
-import { ValidRoles } from 'src/interfaces/validRoles.enum';
+import { ValidRoles } from '../interfaces/validRoles.enum';
 
 @Controller('auth')
 export class AuthController {
