@@ -11,10 +11,12 @@ import {
   classData,
   equipmentData,
   racesData,
+  rolesData,
   spellData,
   talentData,
   traitData,
   typeEquipmentData,
+  userData,
 } from './data/seed-data';
 
 import { TagsService } from 'src/tags/tags.service';
@@ -30,6 +32,7 @@ import { ArchetypeService } from 'src/archetype/archetype.service';
 import { TraitService } from 'src/trait/trait.service';
 import { SpellService } from 'src/spell/spell.service';
 import { TalentService } from 'src/talent/talent.service';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class SeedService {
@@ -45,6 +48,7 @@ export class SeedService {
     private readonly traitService: TraitService,
     private readonly spellService: SpellService,
     private readonly talenService: TalentService,
+    private readonly authService: AuthService,
 
     @InjectRepository(Equipment)
     private readonly equipmentRepository: Repository<Equipment>,
@@ -63,6 +67,8 @@ export class SeedService {
       await this.insertTraits();
       await this.insertSpells();
       await this.insertTalents();
+      await this.insertRoles();
+      await this.inserUsers();
 
       await this.insertCharacters();
       return 'Seed Executed.';
@@ -86,6 +92,18 @@ export class SeedService {
   private async insertTraits() {
     for (const trait of traitData) {
       await this.traitService.create(trait);
+    }
+  }
+
+  private async insertRoles() {
+    for (const rol of rolesData) {
+      await this.authService.createRol(rol);
+    }
+  }
+
+  private async inserUsers() {
+    for (const user of userData) {
+      await this.authService.sigIn(user);
     }
   }
 
@@ -173,9 +191,11 @@ export class SeedService {
         equipment: character.equipment,
         idClass: character.class,
         talents: character.talents,
+        idArchetype: character.archetype,
       };
+      const user = await this.authService.findUserById(character.user);
 
-      return this.characterService.create(createCharacterDto);
+      return this.characterService.create(user, createCharacterDto);
     });
 
     await Promise.all(insertPromises);

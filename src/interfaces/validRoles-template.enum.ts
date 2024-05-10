@@ -1,2 +1,2 @@
-export enum ValidRolesTest {}
+export enum ValidRolesTemplate {}
 //COMPLETE WITH THE ROLES

@@ -19,6 +19,7 @@ import { ClassService } from 'src/class/class.service';
 import { RaceService } from 'src/race/race.service';
 import { BackgroundService } from 'src/background/background.service';
 import { ArchetypeService } from 'src/archetype/archetype.service';
+import { User } from 'src/auth/entities/user.entity';
 
 @Injectable()
 export class CharacterService {
@@ -37,7 +38,7 @@ export class CharacterService {
     private readonly archetypeService: ArchetypeService,
   ) {}
 
-  async create(createCharacterDto: CreateCharacterDto) {
+  async create(user: User, createCharacterDto: CreateCharacterDto) {
     try {
       let foundTalents: Talent[] = [];
       if (createCharacterDto.talents) {
@@ -65,15 +66,15 @@ export class CharacterService {
       );
       const foundClass = await this.classSerive.findOne(
         createCharacterDto.idClass,
+        true,
       );
 
-      const foundArchetype = await this.archetypeService.findOne(
-        createCharacterDto.idArchetype,
-      );
-
-      if (!(foundArchetype.class.IdClass === foundClass.IdClass)) {
-        throw new BadRequestException(`Archetype not correct for the class.`);
-      }
+      const foundArchetype = createCharacterDto.idArchetype
+        ? await this.archetypeService.findOne(
+            createCharacterDto.idArchetype,
+            true,
+          )
+        : null;
 
       // Crear la instancia de personaje
       const character = this.characterRepository.create({
@@ -84,6 +85,7 @@ export class CharacterService {
         background: foundBackground,
         class: foundClass,
         archetype: foundArchetype,
+        user,
       });
 
       // Asignar la clase

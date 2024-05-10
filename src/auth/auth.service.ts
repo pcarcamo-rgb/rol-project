@@ -40,7 +40,7 @@ export class AuthService {
         idUser: true,
       },
     });
-    if (!user) throw new UnauthorizedException();
+    if (!user) throw new UnauthorizedException(`Invalid username`);
 
     if (!bcrypt.compareSync(logInDto.password, user.password))
       throw new UnauthorizedException(`Credentials not valid.`);
@@ -86,7 +86,7 @@ export class AuthService {
   }
 
   async findUser(username: string) {
-    const user = this.userRepository.findOne({
+    const user = await this.userRepository.findOne({
       where: {
         username: username,
       },
@@ -95,6 +95,13 @@ export class AuthService {
       },
     });
 
+    console.log(user);
+
+    return user;
+  }
+
+  async findUserById(id: number) {
+    const user = await this.userRepository.findOneBy({ idUser: id });
     return user;
   }
 

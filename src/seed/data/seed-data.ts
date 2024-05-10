@@ -29,6 +29,16 @@ interface SeedEquipment {
   price: number;
 }
 
+interface SeedUser {
+  username: string;
+  password: string;
+  roles: number[];
+}
+
+interface SeedRoles {
+  descRol: string;
+}
+
 interface SeedTrait {
   nameTrait: string;
   descTrait: string;
@@ -81,6 +91,8 @@ interface Character {
   equipment: number[];
   class: number;
   talents: number[];
+  user: number;
+  archetype?: number;
 }
 
 interface SeedArchetype {
@@ -93,6 +105,36 @@ interface SeedClass {
   descClass: string;
   lifeDice: number;
 }
+
+export const rolesData: SeedRoles[] = [
+  {
+    descRol: 'Admin',
+  },
+  {
+    descRol: 'Administrator',
+  },
+  {
+    descRol: 'User',
+  },
+];
+
+export const userData: SeedUser[] = [
+  {
+    username: 'root',
+    password: 'root',
+    roles: [1],
+  },
+  {
+    username: 'Administrator',
+    password: '123',
+    roles: [2],
+  },
+  {
+    username: 'User',
+    password: '123',
+    roles: [3],
+  },
+];
 
 export const talentData: SeedTalent[] = [
   {
@@ -327,6 +369,7 @@ export const charactersData: Character[] = [
     equipment: [1],
     class: 1,
     talents: [2],
+    user: 1,
   },
   {
     name: 'Lirelle',
@@ -344,6 +387,7 @@ export const charactersData: Character[] = [
     equipment: [2, 1],
     class: 2,
     talents: [1, 3],
+    user: 2,
   },
   {
     name: 'Thorin',
@@ -361,5 +405,7 @@ export const charactersData: Character[] = [
     equipment: [1, 2, 3],
     class: 3,
     talents: [3],
+    user: 3,
+    archetype: null,
   },
 ];

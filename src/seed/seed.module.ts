@@ -14,6 +14,7 @@ import { ArchetypeModule } from 'src/archetype/archetype.module';
 import { TraitModule } from 'src/trait/trait.module';
 import { SpellModule } from 'src/spell/spell.module';
 import { TalentModule } from 'src/talent/talent.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [SeedController],
@@ -31,6 +32,7 @@ import { TalentModule } from 'src/talent/talent.module';
     TraitModule,
     SpellModule,
     TalentModule,
+    AuthModule,
   ],
 })
 export class SeedModule {}

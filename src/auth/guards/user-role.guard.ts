@@ -31,6 +31,8 @@ export class UserRoleGuard implements CanActivate {
       throw new BadRequestException('User not found.');
     }
 
+    if (user.roles.find((rol) => rol.descRol === 'Admin')) return true;
+
     for (const role of user.roles) {
       const { descRol } = role;
 

@@ -38,7 +38,7 @@ export class ArchetypeService {
   async findOne(id: number, isOnlyArchetype?: boolean) {
     if (isOnlyArchetype) {
       const archetype = await this.archetypeRepository.findOneBy({
-        IdArchetype: id,
+        IdArchetype: +id,
       });
       if (!archetype)
         throw new NotFoundException(`Archetype with id ${id} not found.`);

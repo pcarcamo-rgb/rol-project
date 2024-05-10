@@ -15,6 +15,7 @@ import { Equipment } from 'src/equipment/entities/equipment.entity';
 import { Class } from 'src/class/entities/class.entity';
 import { Talent } from 'src/talent/entities/talent.entity';
 import { Archetype } from 'src/archetype/entities/archetype.entity';
+import { User } from 'src/auth/entities/user.entity';
 
 @Entity()
 export class Character {
@@ -116,4 +117,8 @@ export class Character {
   @ManyToOne(() => Race)
   @JoinColumn({ name: 'idRace' })
   race: Race;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'idUser' })
+  user: User;
 }

@@ -16,25 +16,27 @@ import { UserRoleGuard } from 'src/auth/guards/user-role.guard';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { ValidRoles } from 'src/interfaces/validRoles.enum';
 import { Auth } from 'src/auth/decorators/auth.decorator';
+import { GetUser } from 'src/common/get-user/get-user.decorator';
+import { User } from 'src/auth/entities/user.entity';
 
 @Controller('character')
 export class CharacterController {
   constructor(private readonly characterService: CharacterService) {}
 
-  @Roles(ValidRoles.ADMIN)
-  @UseGuards(AuthGuard, UserRoleGuard)
   @Post()
-  create(@Body() createCharacterDto: CreateCharacterDto) {
-    return this.characterService.create(createCharacterDto);
+  create(
+    @GetUser() user: User,
+    @Body() createCharacterDto: CreateCharacterDto,
+  ) {
+    return this.characterService.create(user, createCharacterDto);
   }
 
-  @Auth(ValidRoles.USER)
   @Get()
+  @Auth(ValidRoles.ADMIN)
   findAll() {
     return this.characterService.findAll();
   }
 
-  @Auth(ValidRoles.USER)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.characterService.findOne(+id);

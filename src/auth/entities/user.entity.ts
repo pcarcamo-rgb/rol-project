@@ -1,9 +1,11 @@
 import { Role } from 'src/auth/entities/role.entity';
+import { Character } from 'src/character/entities/character.entity';
 import {
   Column,
   Entity,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -33,4 +35,7 @@ export class User {
     },
   })
   roles: Role[];
+
+  @OneToMany(() => Character, (character) => character.user)
+  character: Character[];
 }
