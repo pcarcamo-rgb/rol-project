@@ -12,6 +12,7 @@ import { CreateBackgroundDto } from './dto/create-background.dto';
 import { UpdateBackgroundDto } from './dto/update-background.dto';
 import { ValidRoles } from '../interfaces/validRoles.enum';
 import { Auth } from '../auth/decorators/auth.decorator';
+import { Background } from './entities/background.entity';
 
 @Controller('background')
 export class BackgroundController {
@@ -21,9 +22,7 @@ export class BackgroundController {
   @Post()
   create(
     @Body() createBackgroundDto: CreateBackgroundDto,
-  ): Promise<
-    import('c:/rol/src/background/entities/background.entity').Background
-  > {
+  ): Promise<Background> {
     return this.backgroundService.create(createBackgroundDto);
   }
 
