@@ -10,7 +10,9 @@ import {
 import { SpellService } from './spell.service';
 import { CreateSpellDto } from './dto/create-spell.dto';
 import { UpdateSpellDto } from './dto/update-spell.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Spells')
 @Controller('spell')
 export class SpellController {
   constructor(private readonly spellService: SpellService) {}

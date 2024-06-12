@@ -4,19 +4,21 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CharacterModule } from './character/character.module';
 import { BackgroundModule } from './background/background.module';
 import { RaceModule } from './race/race.module';
-import { AbilitiesModule } from './abilities/abilities.module';
-import { SeedModule } from './seed/seed.module';
-import { EquipmentModule } from './equipment/equipment.module';
-import { TagsModule } from './tags/tags.module';
-import { ClassModule } from './class/class.module';
+
 import { TraitModule } from './trait/trait.module';
-import { ArchetypeModule } from './archetype/archetype.module';
+
 import { SpellModule } from './spell/spell.module';
-import { TalentModule } from './talent/talent.module';
+
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { JwtService } from '@nestjs/jwt';
+import { AbilitiesModule } from './character/abilities/abilities.module';
+import { ArchetypeModule } from './character/class/archetype/archetype.module';
+import { ClassModule } from './character/class/class.module';
+import { EquipmentModule } from './character/equipment/equipment.module';
+import { TagsModule } from './character/equipment/tags/tags.module';
+import { TalentModule } from './character/talent/talent.module';
 
 @Module({
   imports: [
@@ -42,7 +44,6 @@ import { JwtService } from '@nestjs/jwt';
     BackgroundModule,
     RaceModule,
     AbilitiesModule,
-    SeedModule,
     EquipmentModule,
     TagsModule,
     ClassModule,

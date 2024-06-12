@@ -69,4 +69,8 @@ export class CreateCharacterDto {
   @IsArray()
   @IsOptional()
   talents?: number[];
+
+  @IsString()
+  @IsOptional()
+  imageUrl?: string;
 }

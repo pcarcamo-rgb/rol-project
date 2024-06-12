@@ -10,7 +10,9 @@ import {
 import { TraitService } from './trait.service';
 import { CreateTraitDto } from './dto/create-trait.dto';
 import { UpdateTraitDto } from './dto/update-trait.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Traits')
 @Controller('trait')
 export class TraitController {
   constructor(private readonly traitService: TraitService) {}

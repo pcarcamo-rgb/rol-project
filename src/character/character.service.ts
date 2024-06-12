@@ -10,16 +10,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Character } from './entities/character.entity';
 import { Repository } from 'typeorm';
 import { CharacterAbilities } from './entities/character-abilities.entity';
-import { AbilitiesService } from '../abilities/abilities.service';
-import { EquipmentService } from '../equipment/equipment.service';
-import { Equipment } from '../equipment/entities/equipment.entity';
-import { Talent } from '../talent/entities/talent.entity';
-import { TalentService } from '../talent/talent.service';
-import { ClassService } from '../class/class.service';
+
 import { RaceService } from '../race/race.service';
 import { BackgroundService } from '../background/background.service';
-import { ArchetypeService } from '../archetype/archetype.service';
+
 import { User } from '../auth/entities/user.entity';
+import { AbilitiesService } from './abilities/abilities.service';
+import { ArchetypeService } from './class/archetype/archetype.service';
+import { ClassService } from './class/class.service';
+import { Equipment } from './equipment/entities/equipment.entity';
+import { EquipmentService } from './equipment/equipment.service';
+import { Talent } from './talent/entities/talent.entity';
+import { TalentService } from './talent/talent.service';
 
 @Injectable()
 export class CharacterService {
@@ -185,7 +187,6 @@ export class CharacterService {
       ...restToUpdate
     } = updateCharacterDto;
 
-    console.log(restToUpdate);
     if (equipment) {
       const foundEquipment: Equipment[] = [];
       for (const equip of equipment) {
@@ -215,7 +216,6 @@ export class CharacterService {
     }
 
     if (competencySkills) {
-      console.log(competencySkills);
       const insertCharAbilities = [];
       for (const abilityId of competencySkills) {
         const searchAbility = await this.abilityService.findOne(abilityId);

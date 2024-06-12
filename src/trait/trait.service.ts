@@ -8,10 +8,10 @@ import { UpdateTraitDto } from './dto/update-trait.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Trait } from './entities/trait.entity';
 import { Repository } from 'typeorm';
-import { ClassService } from '../class/class.service';
-import { ArchetypeService } from '../archetype/archetype.service';
-import { Archetype } from '../archetype/entities/archetype.entity';
-import { Class } from '../class/entities/class.entity';
+import { ArchetypeService } from 'src/character/class/archetype/archetype.service';
+import { Archetype } from 'src/character/class/archetype/entities/archetype.entity';
+import { ClassService } from 'src/character/class/class.service';
+import { Class } from 'src/character/class/entities/class.entity';
 
 @Injectable()
 export class TraitService {

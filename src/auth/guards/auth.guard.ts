@@ -42,10 +42,7 @@ export class AuthGuard implements CanActivate {
         secret: this.configService.get('JWT_SECRET'),
       });
 
-      console.log(payload);
-
       const user = await this.authService.findUser(payload.username);
-      console.log(user);
 
       if (!user) throw new ForbiddenException('Invalid User.');
 

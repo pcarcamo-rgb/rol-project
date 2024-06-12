@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { AbilitiesService } from '../abilities/abilities.service';
+
 import { BackgroundService } from '../background/background.service';
 import { CharacterService } from '../character/character.service';
 import { RaceService } from '../race/race.service';
@@ -19,20 +19,23 @@ import {
   userData,
 } from './data/seed-data';
 
-import { TagsService } from '../tags/tags.service';
-import { TypeEquipmentService } from '../equipment/equipment-type/type-equipment.service';
 import { tagsData } from './data/seed-data';
 
-import { Tags } from '../tags/entities/tag.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Equipment } from '../equipment/entities/equipment.entity';
-import { ClassService } from '../class/class.service';
-import { ArchetypeService } from '../archetype/archetype.service';
+
 import { TraitService } from '../trait/trait.service';
 import { SpellService } from '../spell/spell.service';
-import { TalentService } from '../talent/talent.service';
+
 import { AuthService } from '../auth/auth.service';
+import { AbilitiesService } from 'src/character/abilities/abilities.service';
+import { ArchetypeService } from 'src/character/class/archetype/archetype.service';
+import { ClassService } from 'src/character/class/class.service';
+import { Equipment } from 'src/character/equipment/entities/equipment.entity';
+import { TypeEquipmentService } from 'src/character/equipment/equipment-type/type-equipment.service';
+import { Tags } from 'src/character/equipment/tags/entities/tag.entity';
+import { TagsService } from 'src/character/equipment/tags/tags.service';
+import { TalentService } from 'src/character/talent/talent.service';
 
 @Injectable()
 export class SeedService {
@@ -56,7 +59,7 @@ export class SeedService {
 
   async execute() {
     try {
-      await this.insertBackgrounds();
+      //await this.insertBackgrounds();
       await this.insertRaces();
       await this.insertAbilities();
       await this.insertTags();
@@ -152,14 +155,14 @@ export class SeedService {
     }
     await this.equipmentRepository.save(insertPromises);
   }
-  private async insertBackgrounds() {
+  /*  private async insertBackgrounds() {
     for (const background of backgroundData) {
       await this.backgroundService.create({
         backgroundName: background.backgroundName,
         background: background.background,
       });
     }
-  }
+  } */
 
   private async insertRaces() {
     for (const race of racesData) {

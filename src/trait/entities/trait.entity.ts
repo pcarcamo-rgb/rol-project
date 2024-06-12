@@ -1,5 +1,7 @@
-import { Archetype } from '../../archetype/entities/archetype.entity';
-import { Class } from '../../class/entities/class.entity';
+import { Archetype } from 'src/character/class/archetype/entities/archetype.entity';
+import { Class } from 'src/character/class/entities/class.entity';
+import { Race } from 'src/race/entities/race.entity';
+
 import {
   Column,
   Entity,
@@ -36,4 +38,12 @@ export class Trait {
   })
   @JoinColumn({ name: 'IdArchetype' })
   archetype: Archetype;
+
+  @ManyToOne(() => Race, (race) => race.trait, {
+    nullable: true,
+    cascade: true,
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({ name: 'IdRace' })
+  race: Race;
 }

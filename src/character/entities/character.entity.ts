@@ -11,10 +11,10 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CharacterAbilities } from './character-abilities.entity';
-import { Equipment } from '../../equipment/entities/equipment.entity';
-import { Class } from '../../class/entities/class.entity';
-import { Talent } from '../../talent/entities/talent.entity';
-import { Archetype } from '../../archetype/entities/archetype.entity';
+import { Equipment } from '../equipment/entities/equipment.entity';
+import { Class } from '../class/entities/class.entity';
+import { Talent } from '../talent/entities/talent.entity';
+import { Archetype } from '../class/archetype/entities/archetype.entity';
 import { User } from '../../auth/entities/user.entity';
 
 @Entity()
@@ -29,6 +29,11 @@ export class Character {
     default: 1,
   })
   level: number;
+
+  @Column('varchar', {
+    length: 500,
+  })
+  imageUrl: string;
 
   @Column('int', {
     default: 10,

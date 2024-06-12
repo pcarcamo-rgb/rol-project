@@ -31,12 +31,11 @@ export class AuthService {
         username: logInDto.username,
       },
       relations: {
-        roles: true,
+        roles: false,
       },
       select: {
         username: true,
         password: true,
-        roles: true,
         idUser: true,
       },
     });
@@ -46,6 +45,7 @@ export class AuthService {
       throw new UnauthorizedException(`Credentials not valid.`);
 
     delete user.password;
+    delete user.roles;
 
     const payload = { sub: user.idUser, username: user.username };
 
@@ -94,8 +94,6 @@ export class AuthService {
         roles: true,
       },
     });
-
-    console.log(user);
 
     return user;
   }

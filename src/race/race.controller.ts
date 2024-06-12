@@ -10,7 +10,9 @@ import {
 import { RaceService } from './race.service';
 import { CreateRaceDto } from './dto/create-race.dto';
 import { UpdateRaceDto } from './dto/update-race.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Race')
 @Controller('race')
 export class RaceController {
   constructor(private readonly raceService: RaceService) {}

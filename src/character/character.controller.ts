@@ -18,7 +18,9 @@ import { ValidRoles } from '../interfaces/validRoles.enum';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { GetUser } from '../common/get-user/get-user.decorator';
 import { User } from '../auth/entities/user.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Characters')
 @Controller('character')
 export class CharacterController {
   constructor(private readonly characterService: CharacterService) {}

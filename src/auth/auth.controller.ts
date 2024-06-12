@@ -7,7 +7,9 @@ import { CreateRolDto } from './dto/create-rol.dto';
 import { Public } from './decorators/is-public.decorator';
 import { Auth } from './decorators/auth.decorator';
 import { ValidRoles } from '../interfaces/validRoles.enum';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
