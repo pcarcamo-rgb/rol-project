@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
 import { LogInDto } from './dto/log-in.dto';
@@ -8,6 +8,8 @@ import { Public } from './decorators/is-public.decorator';
 import { Auth } from './decorators/auth.decorator';
 import { ValidRoles } from '../interfaces/validRoles.enum';
 import { ApiTags } from '@nestjs/swagger';
+import { GetUser } from 'src/common/get-user/get-user.decorator';
+import { User } from './entities/user.entity';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -30,5 +32,11 @@ export class AuthController {
   @Post('rol')
   create(@Body() creaRolDto: CreateRolDto) {
     return this.authService.createRol(creaRolDto);
+  }
+
+  @Auth(ValidRoles.USER)
+  @Get('permissions')
+  getPermissions(@GetUser() user: User) {
+    return user;
   }
 }

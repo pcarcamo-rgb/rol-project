@@ -6,7 +6,9 @@ export class Peculiarity {
   @PrimaryGeneratedColumn()
   idPeculiarity: number;
 
-  @ManyToOne(() => Background, (background) => background.peculiarity)
+  @ManyToOne(() => Background, (background) => background.peculiarity, {
+    orphanedRowAction: 'delete',
+  })
   background: Background;
 
   @Column('varchar', {

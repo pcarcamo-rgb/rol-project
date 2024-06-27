@@ -4,5 +4,5 @@ import { Roles } from './roles.decorator';
 import { UserRoleGuard } from '../guards/user-role.guard';
 
 export function Auth(...roles: ValidRoles[]) {
-  return applyDecorators(Roles(roles), UseGuards(UserRoleGuard));
+  return applyDecorators(Roles(roles), UseGuards(Auth, UserRoleGuard));
 }

@@ -4,7 +4,6 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
-  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -32,16 +31,24 @@ export class Background {
   })
   background: string;
 
-  @ManyToOne(() => Ideal, (ideal) => ideal.background)
+  @OneToMany(() => Ideal, (ideal) => ideal.background, {
+    cascade: true,
+  })
   ideal: Ideal[];
 
-  @ManyToOne(() => Peculiarity, (pecualiarity) => pecualiarity.background)
+  @OneToMany(() => Peculiarity, (pecualiarity) => pecualiarity.background, {
+    cascade: true,
+  })
   peculiarity: Peculiarity[];
 
-  @ManyToOne(() => Link, (link) => link.background)
+  @OneToMany(() => Link, (link) => link.background, {
+    cascade: true,
+  })
   link: Link[];
 
-  @ManyToOne(() => Defect, (defect) => defect.background)
+  @OneToMany(() => Defect, (defect) => defect.background, {
+    cascade: true,
+  })
   defect: Defect[];
 
   @ManyToMany(() => Ability, (ability) => ability.background)

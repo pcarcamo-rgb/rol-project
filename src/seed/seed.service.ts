@@ -6,7 +6,7 @@ import { RaceService } from '../race/race.service';
 import {
   abilitiesData,
   archetypeData,
-  backgroundData,
+  //backgroundData,
   charactersData,
   classData,
   equipmentData,
@@ -73,7 +73,7 @@ export class SeedService {
       await this.insertRoles();
       await this.inserUsers();
 
-      await this.insertCharacters();
+      //await this.insertCharacters();
       return 'Seed Executed.';
     } catch (error) {
       console.log(error);

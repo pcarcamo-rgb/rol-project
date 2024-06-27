@@ -6,7 +6,9 @@ export class Defect {
   @PrimaryGeneratedColumn()
   idDefect: number;
 
-  @ManyToOne(() => Background, (background) => background.defect)
+  @ManyToOne(() => Background, (background) => background.defect, {
+    orphanedRowAction: 'delete',
+  })
   background: Background;
 
   @Column('varchar', {

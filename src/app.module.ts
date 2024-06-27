@@ -19,6 +19,7 @@ import { ClassModule } from './character/class/class.module';
 import { EquipmentModule } from './character/equipment/equipment.module';
 import { TagsModule } from './character/equipment/tags/tags.module';
 import { TalentModule } from './character/talent/talent.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { TalentModule } from './character/talent/talent.module';
       database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
+      //dropSchema: true,
     }),
     CharacterModule,
     BackgroundModule,
@@ -52,6 +54,7 @@ import { TalentModule } from './character/talent/talent.module';
     SpellModule,
     TalentModule,
     AuthModule,
+    SeedModule,
   ],
   controllers: [],
   providers: [

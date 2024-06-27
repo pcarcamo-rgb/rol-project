@@ -1,4 +1,11 @@
-import { IsArray, IsNumber, IsString, Min, MinLength } from 'class-validator';
+import {
+  ArrayMinSize,
+  IsArray,
+  IsNumber,
+  IsOptional,
+  IsString,
+  MinLength,
+} from 'class-validator';
 
 export class CreateBackgroundDto {
   @IsString()
@@ -13,28 +20,29 @@ export class CreateBackgroundDto {
   @MinLength(1)
   background: string;
 
-  @IsString()
   @IsArray()
-  @MinLength(1)
+  @IsString({ each: true })
+  @ArrayMinSize(1)
   peculiarities: string[];
 
-  @IsString()
   @IsArray()
-  @MinLength(1)
+  @IsString({ each: true })
+  @ArrayMinSize(1)
   ideals: string[];
 
-  @IsString()
   @IsArray()
-  @MinLength(1)
+  @IsString({ each: true })
+  @ArrayMinSize(1)
   links: string[];
 
-  @IsString()
   @IsArray()
-  @MinLength(1)
+  @IsString({ each: true })
+  @ArrayMinSize(1)
   defects: string[];
 
-  @IsNumber()
   @IsArray()
-  @Min(1)
-  abilities: number[];
+  @IsNumber({}, { each: true })
+  @ArrayMinSize(1)
+  @IsOptional()
+  abilities?: number[];
 }

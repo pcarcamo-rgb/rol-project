@@ -48,16 +48,16 @@ export class BackgroundService {
       } = createBackgroundDto;
 
       const newAbilities: Ability[] = [];
-      abilities.forEach(async (ability) => {
-        const foundAbility: Ability =
-          await this.abilityService.findOne(ability);
-
-        newAbilities.push(foundAbility);
-      });
-
+      if (abilities) {
+        for (const ability of abilities) {
+          const foundAbility: Ability =
+            await this.abilityService.findOne(ability);
+          newAbilities.push(foundAbility);
+        }
+      }
       const newBackground = this.backgroundRepository.create({
-        ...restBackground,
         ability: newAbilities,
+        ...restBackground,
       });
       const background = await this.backgroundRepository.save(newBackground);
 
@@ -102,7 +102,13 @@ export class BackgroundService {
     }
   }
   async findAll() {
-    return await this.backgroundRepository.find();
+    return await this.backgroundRepository.find({
+      select: {
+        IdBackground: true,
+        backgroundDesc: true,
+        backgroundName: true,
+      },
+    });
   }
 
   async findOne(id: number) {
@@ -126,11 +132,68 @@ export class BackgroundService {
   }
 
   async update(id: number, updateBackgroundDto: UpdateBackgroundDto) {
-    const background = await this.findOne(id);
+    const {
+      backgroundName,
+      backgroundDesc,
+      background,
+      ideals,
+      peculiarities,
+      links,
+      defects,
+      //abilities,
+    } = updateBackgroundDto;
 
-    Object.assign(background, updateBackgroundDto);
+    const backgroundToUpdate = await this.findOne(id);
 
-    return await this.backgroundRepository.save(background);
+    backgroundToUpdate.backgroundName = backgroundName;
+    backgroundToUpdate.backgroundDesc = backgroundDesc;
+    backgroundToUpdate.background = background;
+
+    if (ideals) {
+      backgroundToUpdate.ideal = await Promise.all(
+        ideals.map((ideal) =>
+          this.idealRepository.create({
+            background: backgroundToUpdate,
+            descIdeal: ideal,
+          }),
+        ),
+      );
+    }
+
+    if (peculiarities) {
+      backgroundToUpdate.peculiarity = await Promise.all(
+        peculiarities.map((peculiarity) =>
+          this.peculiarityRepository.create({
+            background: backgroundToUpdate,
+            descPeculiarity: peculiarity,
+          }),
+        ),
+      );
+    }
+
+    if (links) {
+      backgroundToUpdate.link = await Promise.all(
+        links.map((link) =>
+          this.linkRepository.create({
+            background: backgroundToUpdate,
+            descLink: link,
+          }),
+        ),
+      );
+    }
+
+    if (defects) {
+      backgroundToUpdate.defect = await Promise.all(
+        defects.map((defect) =>
+          this.defectRepository.create({
+            background: backgroundToUpdate,
+            descDefect: defect,
+          }),
+        ),
+      );
+    }
+
+    return this.backgroundRepository.save(backgroundToUpdate);
   }
 
   async remove(id: number) {

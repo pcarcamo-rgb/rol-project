@@ -29,7 +29,7 @@ export class AbilitiesService {
   }
 
   async findOne(id: number) {
-    const ability = this.abilityRepository.findOneBy({ idAbility: id });
+    const ability = await this.abilityRepository.findOneBy({ idAbility: id });
 
     if (!ability)
       throw new NotFoundException(`Ability with id ${id} not found.`);
