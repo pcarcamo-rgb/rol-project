@@ -17,7 +17,8 @@ export class CreateTraitDto {
 
   @IsNumber()
   @Min(1)
-  level: number;
+  @IsOptional()
+  level?: number;
 
   @IsNumber()
   @Min(1)

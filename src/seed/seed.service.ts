@@ -60,7 +60,7 @@ export class SeedService {
   async execute() {
     try {
       //await this.insertBackgrounds();
-      await this.insertRaces();
+      //await this.insertRaces();
       await this.insertAbilities();
       await this.insertTags();
       await this.insertTypeEquipment();
@@ -164,11 +164,11 @@ export class SeedService {
     }
   } */
 
-  private async insertRaces() {
+  /*   private async insertRaces() {
     for (const race of racesData) {
       await this.raceService.create({ race: race.race });
     }
-  }
+  } */
 
   private async insertAbilities() {
     for (const ability of abilitiesData) {

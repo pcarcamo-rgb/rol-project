@@ -20,7 +20,9 @@ export class Trait {
   @Column('varchar')
   descTrait: string;
 
-  @Column('int')
+  @Column('int', {
+    default: 1,
+  })
   level: number;
 
   @ManyToOne(() => Class, (clas) => clas.trait, {
@@ -41,8 +43,6 @@ export class Trait {
 
   @ManyToOne(() => Race, (race) => race.trait, {
     nullable: true,
-    cascade: true,
-    onUpdate: 'CASCADE',
   })
   @JoinColumn({ name: 'IdRace' })
   race: Race;

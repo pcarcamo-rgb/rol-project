@@ -10,9 +10,12 @@ export class Race {
   @Column('varchar', { unique: true })
   race: string;
 
+  @Column('varchar')
+  descRace: string;
+
   @OneToMany(() => Character, (character) => character.race)
   character: Character;
 
   @OneToMany(() => Trait, (trait) => trait.race)
-  trait: Trait;
+  trait: Trait[];
 }
